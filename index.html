@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Also update these three lines when you replace the placeholders in js/content.js -->
+<title>LAÇO: live code to share</title>
+<meta name="description" content="[One sentence about the series.]">
+<meta property="og:title" content="LAÇO: live code to share">
+<meta property="og:description" content="[One sentence about the series.]">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='black'/><text x='2' y='13' font-family='monospace' font-size='13' fill='%23d4ff3a'>&gt;</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;0,800;1,400&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">skip to content</a>
+
+<!-- Live visuals: full-bleed Hydra canvas, isolated in its own document -->
+<iframe id="hydra-frame" src="hydra.html" title="Live Hydra visuals" aria-hidden="true" tabindex="-1"></iframe>
+<div class="dim" aria-hidden="true"></div>
+
+
+<main id="main">
+  <header class="hero" id="top">
+    <p class="kicker" id="kicker"></p>
+    <h1 class="hero__title"><span class="hero__name" id="title"></span> <span class="hero__subtitle" id="subtitle"></span></h1>
+    <p class="hero__tagline"><span id="tagline"></span></p>
+    <p class="hero__meta"><span id="dates"></span> <span aria-hidden="true">·</span> <span id="place"></span></p>
+    <div class="hero__actions">
+      <a class="btn btn--primary" id="hero-signup" href="#signup">sign up →</a>
+      <a class="btn" href="#workshops">see the workshops ↓</a>
+    </div>
+  </header>
+
+  <!-- About, sign up and the workshops hang together like the knots: js/tied.js draws the ropes -->
+  <div class="tied" id="tied">
+    <svg class="tied__ropes" aria-hidden="true"></svg>
+
+    <div class="tied__col">
+      <section class="block" id="about" aria-labelledby="about-h">
+        <h2 id="about-h">about</h2>
+        <div id="about-text" class="prose"></div>
+        <h3>bring</h3>
+        <ul id="bring" class="dash-list"></ul>
+      </section>
+
+      <section class="block" id="signup" aria-labelledby="signup-h">
+        <h2 id="signup-h">sign up</h2>
+        <p id="signup-note"></p>
+        <p><a class="btn btn--primary btn--big" id="signup-link" href="#" target="_blank" rel="noopener">sign up →</a></p>
+        <p>questions? <a id="contact" href="#"></a></p>
+      </section>
+    </div>
+
+    <section class="tied__col tied__col--right" id="workshops" aria-labelledby="workshops-h">
+      <div class="block" id="workshops-head">
+        <h2 id="workshops-h">workshops</h2>
+        <p class="muted">every workshop has its own sound + visuals scene. press play on one, then open the code and change it.</p>
+      </div>
+      <ol id="workshop-list" class="workshops"></ol>
+    </section>
+  </div>
+
+  <section class="block" id="how" aria-labelledby="how-h">
+    <h2 id="how-h">how this site works</h2>
+    <div class="prose">
+      <p>The sound is <a href="https://strudel.cc" target="_blank" rel="noopener">Strudel</a>, a JavaScript port of TidalCycles. The visuals are <a href="https://hydra.ojack.xyz" target="_blank" rel="noopener">Hydra</a>, a video synth by Olivia Jack. Both run in your browser, and the code is right here in the panel for you to edit.</p>
+      <p>Wrap layers in <code>drums(…)</code> or <code>melody(…)</code> to hook them to the floating controls. In Hydra, <code>pulse</code> follows the drums and <code>pointer.x</code> / <code>pointer.y</code> follow your mouse.</p>
+      <p class="muted">Inspired by <a href="https://github.com/vigliensoni/strudel-pie" target="_blank" rel="noopener">strudel-pie</a> by Gabriel Vigliensoni.</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p id="footer-links"></p>
+    <p class="muted">made with strudel + hydra · <a href="https://toplap.org" target="_blank" rel="noopener">toplap</a></p>
+  </footer>
+</main>
+
+<!-- Floating controls: filled in by js/toys/*.js (knots, code or orbits) -->
+<div id="toys" class="toys" aria-label="Sound controls" role="group"></div>
+
+<!-- Live-code panel -->
+<aside id="code-panel" class="code" data-open="false" aria-label="Live code">
+  <div class="code__bar">
+    <button type="button" id="start" class="code__sound">▶ start sound</button>
+    <button type="button" id="code-toggle" class="code__toggle" aria-expanded="false" aria-controls="code-body">{ } edit the code</button>
+  </div>
+  <div id="code-body" class="code__body" hidden>
+    <div class="code__head">
+      <div role="tablist" aria-label="Language">
+        <button type="button" role="tab" data-lang="strudel" aria-selected="true" aria-controls="code-strudel">strudel ♪</button>
+        <button type="button" role="tab" data-lang="hydra" aria-selected="false" aria-controls="code-hydra">hydra ◐</button>
+      </div>
+      <span class="code__scene">scene: <span id="code-scene">intro</span></span>
+    </div>
+    <textarea id="code-strudel" class="code__area" role="tabpanel" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Strudel code"></textarea>
+    <textarea id="code-hydra" class="code__area" role="tabpanel" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Hydra code" hidden></textarea>
+    <div class="code__actions">
+      <button type="button" class="btn btn--primary" data-action="run">▶ run</button>
+      <button type="button" class="btn" data-action="stop">■ stop</button>
+      <button type="button" class="btn" data-action="reset">↺ reset</button>
+      <label class="code__follow"><input type="checkbox" id="follow" autocomplete="off"> follow scroll</label>
+    </div>
+    <p class="code__status" id="code-status" role="status" aria-live="polite"></p>
+    <p class="code__keys muted"><kbd>ctrl/⌘</kbd>+<kbd>enter</kbd> run · <kbd>ctrl</kbd>+<kbd>.</kbd> stop</p>
+  </div>
+</aside>
+
+<script src="https://unpkg.com/@strudel/web@1.3.0/dist/index.js"
+        integrity="sha384-Be7toEZy01lox8utUZEOBM2nCd1jVX8R9A3YwfZ7j5kBTv/MKy+LlCbTWqE97W8x"
+        crossorigin="anonymous"></script>
+<script src="js/content.js"></script>
+<script src="js/visuals.js"></script>
+<script src="js/sound.js"></script>
+<script src="js/editor.js"></script>
+<script src="js/toys.js"></script>
+<script src="js/toys/knots.js"></script>
+<script src="js/toys/fragments.js"></script>
+<script src="js/toys/orbits.js"></script>
+<script src="js/main.js"></script>
+<script src="js/tied.js"></script>
+</body>
+</html>

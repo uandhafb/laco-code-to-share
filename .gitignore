@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+
+# editors
+.vscode/
+.idea/
+*.swp
+
+# Python (only used for `python3 -m http.server`, no packages needed)
+.venv/
+venv/
+__pycache__/
+
+# in case node tools are ever added
+node_modules/
+
+# local notes and logs
+*.log

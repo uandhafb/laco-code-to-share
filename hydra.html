@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>hydra</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #000; }
+  canvas { display: block; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+<canvas id="hydra"></canvas>
+<script src="https://unpkg.com/hydra-synth@1.4.0/dist/hydra-synth.js"
+        integrity="sha384-/vOuuF0UsnMoxr7eN/uWmNuIDUgt5t++C+G6a+T9WpUwK3vbCAStyB5cq3IajAj0"
+        crossorigin="anonymous"></script>
+<script>
+// Hydra lives in this iframe so its globals (osc, noise, ...) don't clash
+// with Strudel's on the main page. The parent sends code via postMessage.
+
+window.pulse = 0;                   // set by drum hits, decays every frame
+window.pointer = { x: 0.5, y: 0.5 }; // mouse / touch, forwarded by the parent
+
+const canvas = document.getElementById("hydra");
+const post = (msg) => window.parent.postMessage(msg, location.origin);
+
+// Phones and small screens render at half resolution.
+const scale = () => (Math.min(innerWidth, innerHeight) < 700 ? 0.5 : 1) * Math.min(devicePixelRatio || 1, 1.5);
+const size = () => [Math.round(innerWidth * scale()), Math.round(innerHeight * scale())];
+
+let hydra;
+try {
+  const [width, height] = size();
+  hydra = new Hydra({ canvas, width, height, detectAudio: false, makeGlobal: true });
+  hydra.synth.update = () => { window.pulse *= 0.88; };
+} catch (err) {
+  post({ type: "fatal", message: String(err && err.message || err) });
+}
+
+let lastErrorAt = 0;
+const reportError = (err) => {
+  const now = performance.now();
+  if (now - lastErrorAt < 500) return;   // a broken arrow function throws every frame
+  lastErrorAt = now;
+  post({ type: "error", message: String(err && err.message || err) });
+};
+window.addEventListener("error", (e) => reportError(e.error || e.message));
+
+// Post effects: the page's controls chain extra functions after the scene,
+// e.g. ".kaleid(5).invert()". Drawn into o3, which scenes must leave alone.
+let postChain = "";
+const applyPost = () => {
+  if (postChain) {
+    (0, eval)(`src(o0)${postChain}.out(o3)`);
+    render(o3);
+  } else {
+    render(o0);
+  }
+};
+
+window.addEventListener("resize", () => {
+  if (hydra) setResolution(...size());
+});
+
+window.addEventListener("message", (e) => {
+  if (e.origin !== location.origin || e.source !== window.parent) return;
+  const msg = e.data || {};
+  if (msg.type === "hello") {   // the parent's script may have loaded after our first announcement
+    post(hydra ? { type: "ready" } : { type: "fatal", message: "WebGL unavailable" });
+    return;
+  }
+  if (!hydra) return;
+  switch (msg.type) {
+    case "code":
+      try {
+        (0, eval)(msg.code);
+        if (postChain) applyPost();
+        post({ type: "ok" });
+      } catch (err) {
+        reportError(err);
+      }
+      break;
+    case "pulse":
+      window.pulse = Math.max(window.pulse, msg.value);
+      break;
+    case "pointer":
+      window.pointer.x = msg.x;
+      window.pointer.y = msg.y;
+      break;
+    case "post":
+      postChain = msg.chain || "";
+      try {
+        applyPost();
+      } catch (err) {
+        postChain = "";
+        render(o0);
+        reportError(err);
+      }
+      break;
+    case "speed":
+      hydra.synth.speed = msg.value;
+      break;
+  }
+});
+
+if (hydra) post({ type: "ready" });
+</script>
+</body>
+</html>
