@@ -2,6 +2,8 @@
 
 The website for **LAÇO**, a series of livecoding workshops at the Visualization Studio, Concordia Library (2026).
 
+**Live site: https://uandhafb.github.io/laco-code-to-share/**
+
 The whole page is a live instrument. The background is [Hydra](https://hydra.ojack.xyz) visuals, the sound is [Strudel](https://strudel.cc), and visitors can play with both, by tying knots or by editing the code directly.
 
 It's plain HTML, CSS and JavaScript with no build step and nothing to install, so GitHub Pages can serve the folder as-is.
@@ -85,13 +87,11 @@ While the design is being decided, the "compare buttons" box at the top right sw
 
 Once one is chosen, the other two (`js/toys/fragments.js`, `js/toys/orbits.js`) and the switcher can be removed.
 
-## Publish on GitHub Pages
+## The live site
 
-1. In this repository, go to **Settings → Pages**.
-2. Under **Build and deployment**, choose **Deploy from a branch**, then `main` and `/ (root)`, and save.
-3. After a minute the site is at **https://uandhafb.github.io/laco-code-to-share/**.
+**https://uandhafb.github.io/laco-code-to-share/**
 
-This repository is **private**. GitHub Pages for private repositories needs a paid plan (GitHub Pro, or GitHub Education's free Pro). Otherwise, make the repository public first.
+GitHub Pages publishes the `main` branch (folder `/ (root)`, set in **Settings → Pages**). Every push to `main` updates the live site in about a minute.
 
 `.nojekyll` tells GitHub Pages to serve the files exactly as they are.
 
