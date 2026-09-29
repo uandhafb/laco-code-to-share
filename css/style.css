@@ -148,7 +148,7 @@ main { position: relative; transition: opacity 0.4s; }
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
-.hero__meta { margin: 1rem 0 0; color: var(--accent); font-weight: 700; font-size: clamp(1.2rem, 2.4vw, 1.8rem); line-height: 1.5; }
+.hero__meta { margin: 1rem 0 0; color: var(--accent); font-weight: 700; font-size: clamp(1.2rem, 2.1vw, 1.6rem); line-height: 1.5; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 1rem; margin: 2.2rem 0 0; }
 .hero__actions .btn { font-size: clamp(1.05rem, 1.7vw, 1.3rem); padding: 0.75em 1.3em; }
 /* ── content blocks ────────────────────────────────────────── */
@@ -165,6 +165,7 @@ main { position: relative; transition: opacity 0.4s; }
 .block--wide { width: min(1080px, calc(100% - 2 * var(--gutter))); }
 
 /* ── registration form ─────────────────────────────────────── */
+#contact { overflow-wrap: anywhere; }   /* long email: may wrap on phones */
 .signup__review { border-left: 3px solid var(--accent); background: rgba(212, 255, 58, 0.08); padding: 0.6em 0.9em; }
 .form { position: relative; display: grid; gap: 1.3rem; margin: 1.8rem 0 1.6rem; }
 .field { display: grid; gap: 0.45rem; min-width: 0; margin: 0; padding: 0; border: 0; }
@@ -193,12 +194,12 @@ main { position: relative; transition: opacity 0.4s; }
 .check input { width: 1.15em; height: 1.15em; accent-color: var(--accent); align-self: center; flex: none; }
 .check:has(input:checked) { border-color: var(--accent); background: rgba(212, 255, 58, 0.08); }
 .check__hint { color: var(--muted); font-size: 0.95rem; }
+.check--all { border-style: dashed; }
 .field[data-invalid] .check { border-color: var(--error); }
 .form__trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .form button[disabled] { opacity: 0.6; cursor: wait; }
 .form__status { margin: 0; min-height: 1.4em; font-size: 1rem; }
 .form__status[data-kind="error"] { color: var(--error); }
-.form__privacy { margin: 0; font-size: 0.9rem; }
 .form__thanks { margin: 0; padding: 1em 1.1em; font-size: 1.2rem; font-weight: 700; color: var(--accent); border: 2px solid var(--accent); }
 
 /* ── the tied part: about + sign up (left) and workshops (right), joined by ropes ── */
@@ -242,6 +243,10 @@ main { position: relative; transition: opacity 0.4s; }
 .block h3 { margin: 2rem 0 0.6rem; font-size: 1rem; color: var(--accent); }
 .block h3::before { content: "### "; opacity: 0.6; }
 .prose p { margin: 0 0 1em; }
+/* "laço /ˈla.su/ (Brazilian Portuguese): …" styled like a dictionary entry */
+.about__def { font-size: 1.15rem; line-height: 1.6; padding-bottom: 1em; border-bottom: 1px dashed var(--line); }
+.about__word { font-size: 1.5rem; color: var(--accent); }
+.about__say { color: var(--muted); }
 .prose p:last-child { margin-bottom: 0; }
 
 .dash-list { list-style: none; padding: 0; margin: 0; }
@@ -293,43 +298,18 @@ main { position: relative; transition: opacity 0.4s; }
 }
 .footer p { display: inline-block; background: rgba(0, 0, 0, 0.7); padding: 0.2em 0.6em; margin: 0.2rem; }
 
-/* ── floating controls (three versions: knots / code / orbits) ── */
+/* ── floating controls: the knot tags ─────────────────────── */
 .toys { position: fixed; inset: 0; z-index: 20; pointer-events: none; }
 .toys > * { pointer-events: auto; }
 .toys .toys__svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
 .toys button { font: inherit; touch-action: none; user-select: none; -webkit-user-select: none; }
 
-.toy-hint {
-  position: fixed; top: 3.6rem; right: var(--gutter);
-  margin: 0; max-width: min(34ch, calc(100% - 2rem));
-  font-size: 1.1rem; color: var(--ink); text-align: right;
-  background: rgba(0, 0, 0, 0.7); padding: 0.3em 0.6em;
-  pointer-events: none;
-}
-
-/* switcher, top right (temporary: for comparing the three versions) */
-.compare {
-  position: fixed; top: 0.9rem; right: var(--gutter); z-index: 30;
-  display: flex; align-items: center; gap: 0.35rem;
-  font-size: 1.05rem;
-  background: rgba(0, 0, 0, 0.75); padding: 0.3rem 0.4rem 0.3rem 0.7rem;
-  border: 1px dashed var(--line);
-}
-.compare__label { color: var(--muted); margin-right: 0.3rem; }
-.compare button {
-  font: inherit; color: var(--ink); background: none;
-  border: 1px solid var(--line); padding: 0.25em 0.7em; cursor: pointer;
-}
-.compare button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #000; font-weight: 700; }
-
-/* 1 · knots on strings */
 .rope { fill: none; stroke: rgba(255, 255, 255, 0.35); stroke-width: 1.5; }
 .bond { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: round; transition: stroke-width 0.1s; }
 .is-hit .bond { stroke-width: 6; filter: drop-shadow(0 0 6px var(--accent)); }
-/* The knots version lives on the first screen only and scrolls away with it,
-   so the sections below stay clear. The loop inside it stays fixed. */
+/* The knots live on the first screen only and scroll away with it,
+   so the sections below stay clear. */
 .toys[data-mode="knots"] { position: absolute; inset: 0 0 auto 0; height: 100svh; }
-.toys[data-mode="knots"] .toy-hint,
 .toys[data-mode="knots"] .loop { position: absolute; }   /* the loop scrolls away too, so it never covers the workshops */
 .toys[data-mode="knots"] .loop { pointer-events: none; }   /* display only here: clicks pass through to the page */
 
@@ -360,31 +340,9 @@ main { position: relative; transition: opacity 0.4s; }
 /* being carried by the wind */
 .knot.is-carried { border: 2px solid var(--accent-2); box-shadow: 0 0 0 4px rgba(255, 79, 216, 0.35), 0 0 28px var(--accent-2); color: var(--ink); }
 
-/* 2 · code fragments */
-.token {
-  position: absolute; top: 0; left: 0;
-  padding: 0.45em 0.75em;
-  font-size: 0.85rem; white-space: nowrap;
-  color: var(--ink);
-  background: rgba(0, 0, 0, 0.85);
-  border: 1px solid var(--line);
-  border-left: 3px solid var(--accent);
-  cursor: grab;
-  will-change: transform;
-}
-.token--visual { border-left-color: var(--accent-2); }
-.token:active { cursor: grabbing; }
-.token[hidden] { display: none; }
-.token--in {
-  position: static; padding: 0.1em 0.35em; margin: 0 0.1em;
-  font-size: inherit; cursor: pointer;
-  color: #000; background: var(--accent); border: 0;
-}
-.token--in.token--visual { background: var(--accent-2); }
-.token--in:hover { text-decoration: line-through; }
 .loop {
   position: fixed; right: 1rem; bottom: 5.8rem;
-  width: min(540px, calc(100% - 2rem));
+  width: min(500px, calc(100% - 2rem));
   padding: 0.7rem 1rem 0.8rem;
   font-size: 1.25rem;
   background: rgba(4, 4, 8, 0.88);
@@ -392,7 +350,6 @@ main { position: relative; transition: opacity 0.4s; }
   border-radius: 999px / 60px;
   transition: border-color 0.15s, box-shadow 0.15s;
 }
-.loop.is-over { border-color: var(--accent); box-shadow: 0 0 30px -6px var(--accent); }
 .loop.is-hit { border-color: rgba(212, 255, 58, 0.7); }
 .loop__title { margin: 0 0 0.2rem; font-weight: 700; color: var(--accent); text-align: center; }
 .loop__line { margin: 0.2rem 0.6rem; overflow-wrap: anywhere; line-height: 1.7; }
@@ -400,37 +357,6 @@ main { position: relative; transition: opacity 0.4s; }
 .loop__piece { display: inline-block; white-space: nowrap; line-height: 1.4; color: #000; background: var(--accent); padding: 0.05em 0.35em; margin: 0.1em 0.1em; }
 .loop__piece--visual { background: var(--accent-2); }
 
-/* 3 · orbits */
-.orbit-guide { fill: none; stroke: rgba(255, 255, 255, 0.18); stroke-width: 1; stroke-dasharray: 3 6; }
-.orbit-guide.is-active { stroke-dasharray: none; stroke-width: 2.5; }
-.orbit--drums .orbit-guide.is-active { stroke: var(--accent); }
-.orbit--melody .orbit-guide.is-active { stroke: var(--accent-2); }
-.orbit-guide-label { fill: var(--muted); font: 12px var(--font); text-anchor: middle; paint-order: stroke; stroke: #000; stroke-width: 4px; }
-.orbit-name { fill: var(--ink); font: 700 14px var(--font); text-anchor: middle; paint-order: stroke; stroke: #000; stroke-width: 4px; }
-.orbit-flash { fill: #fff; opacity: 0; pointer-events: none; }
-.orbit-flash.is-on { animation: orbit-flash 0.5s ease-out; }
-@keyframes orbit-flash { from { opacity: 0.9; } to { opacity: 0; transform-box: fill-box; } }
-.orbit-dot {
-  position: absolute; top: 0; left: 0;
-  width: 30px; height: 30px; margin: -15px 0 0 -15px;
-  border-radius: 50%;
-  background: var(--accent); border: 2px solid #000;
-  box-shadow: 0 0 18px var(--accent);
-  cursor: grab;
-  transition: scale 0.1s;
-  will-change: transform;
-}
-.orbit-dot--melody { background: var(--accent-2); box-shadow: 0 0 18px var(--accent-2); }
-.orbit-dot span {
-  position: absolute; left: 50%; top: 100%; translate: -50% 4px;
-  font-size: 0.75rem; font-weight: 700; color: var(--ink);
-  background: rgba(0, 0, 0, 0.75); padding: 0 0.3em;
-  pointer-events: none;
-}
-.orbit-dot::after { content: ""; position: absolute; inset: -12px; border-radius: 50%; }  /* bigger grab area */
-.orbit-dot.is-hit { scale: 1.35; }
-.orbit-dot.is-off { background: #222; box-shadow: none; border: 2px dashed var(--muted); }
-.orbit-dot.is-off span::after { content: " (off)"; color: var(--muted); }
 
 /* ── live-code panel ───────────────────────────────────────── */
 .code {
@@ -513,9 +439,6 @@ body.still .hero__name { animation: none; }
 
 /* ── small screens ─────────────────────────────────────────── */
 @media (max-width: 700px) {
-  .compare { top: 0.6rem; font-size: 0.8rem; }
-  .compare__label { display: none; }
-  .toy-hint { top: 3rem; font-size: 0.82rem; }
   .loop { right: 0.5rem; left: 0.5rem; width: auto; bottom: 4.6rem; font-size: 1rem; }
   .knot { width: 124px; height: 66px; margin: -33px 0 0 -62px; padding-top: 8px; }
   .knot__word { font-size: 1.1rem; }

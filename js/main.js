@@ -20,11 +20,18 @@
   $("tagline").textContent = series.tagline;
   $("dates").textContent = series.dates;
   $("place").textContent = series.place;
-  $("about-text").append(...series.about.map((p) => el("p", { textContent: p })));
+  // **bold** in the content file becomes <strong>; everything else stays plain text.
+  const rich = (text) => text.split(/\*\*(.+?)\*\*/).map((part, i) => (i % 2 ? el("strong", { textContent: part }) : part));
+  const def = series.definition;
+  $("about-text").append(
+    el("p", { className: "about__def" },
+      el("strong", { className: "about__word", textContent: def.word }), " ",
+      el("span", { className: "about__say", textContent: def.say }), " ",
+      def.meaning),
+    ...series.about.map((p) => el("p", {}, rich(p))));
   $("bring").append(...series.bring.map((b) => el("li", { textContent: b })));
   $("signup-intro").textContent = series.signup.intro;
   $("signup-review").textContent = series.signup.review;
-  $("signup-privacy").textContent = series.signup.privacy;
   document.querySelectorAll("[data-role-hint]").forEach((el) => {
     el.textContent = "— " + series.signup.roles[el.dataset.roleHint];
   });

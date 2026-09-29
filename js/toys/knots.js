@@ -308,13 +308,6 @@ ToyModes.knots = (() => {
         }, ac.signal);
       });
 
-      root.append(el("p", {
-        className: "toy-hint",
-        textContent: reduced
-          ? "tie two knots to play them together · pull them apart to untie"
-          : "tie two knots to play them together · pull them apart to untie · the wind ties them too",
-      }));
-
       bonds = [["drums", "melody"]];
       apply();
       offHit = Sound.on("hit", (gain) => {

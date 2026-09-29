@@ -2,15 +2,40 @@
 // Google Form (so they land in a Google Sheet, with email notifications) — see README.md.
 (() => {
   const cfg = window.SITE.series.signup;
+  const workshops = window.SITE.workshops;
   const form = document.getElementById("signup-form");
   const status = document.getElementById("signup-status");
   const submit = form.querySelector("button[type=submit]");
   const roleBoxes = [...form.querySelectorAll("input[name=role]")];
   const ROLES = roleBoxes.map((b) => b.value);   // attendee, performer, presenter
+  const el = (tag, props = {}, ...children) => {
+    const node = Object.assign(document.createElement(tag), props);
+    node.append(...children);
+    return node;
+  };
+
+  // ── "which workshops?" (for attendees), built from the workshop list ──
+  const list = document.getElementById("f-workshop-list");
+  const workshopBoxes = workshops.map((w, i) => {
+    const box = el("input", { type: "checkbox", name: "workshop", value: String(i) });
+    list.append(el("label", { className: "check" }, box, " ",
+      el("b", { textContent: w.number }), " ",
+      el("span", { textContent: w.title }), " ",
+      el("span", { className: "check__hint", textContent: w.date })));
+    return box;
+  });
+  const allBox = document.getElementById("f-all");
+  allBox.addEventListener("change", () => workshopBoxes.forEach((b) => (b.checked = allBox.checked)));
+  workshopBoxes.forEach((b) => b.addEventListener("change", () => {
+    allBox.checked = workshopBoxes.every((x) => x.checked);
+    setError("f-workshops", "");
+  }));
+  const chosenWorkshops = () => workshopBoxes.filter((b) => b.checked).map((b) => Number(b.value));
 
   // ── Google Form connection ──────────────────────────────────
   // Read from the "pre-filled link" Google Forms makes (⋮ → Get pre-filled link).
-  // Its entries come in question order: name, email, roles (one value per option), performance,
+  // Its entries come in question order: name, email, roles (one value per option),
+  // workshops (one value per workshop — this question is optional), performance,
   // presentation, and the last "anything else?" box.
   function connection() {
     let url;
@@ -23,7 +48,9 @@
       if (e) e.values.push(value);
       else entries.push({ key, values: [value] });
     });
-    if (entries.length !== 6 || entries[2].values.length !== ROLES.length) return null;
+    const hasWorkshops = entries.length === 7;
+    if (!(entries.length === 6 || hasWorkshops) || entries[2].values.length !== ROLES.length) return null;
+    const rest = entries.slice(hasWorkshops ? 4 : 3);
     return {
       action: url.origin + url.pathname.replace(/\/viewform$/, "/formResponse"),
       name: entries[0].key,
@@ -31,12 +58,15 @@
       roles: entries[2].key,
       // the option labels exactly as written in the Google Form, in the same order as ours
       roleLabels: Object.fromEntries(ROLES.map((r, i) => [r, entries[2].values[i]])),
-      performance: entries[3].key,
-      presentation: entries[4].key,
-      message: entries[5].key,
+      workshops: hasWorkshops ? entries[3].key : null,
+      workshopLabels: hasWorkshops ? entries[3].values : [],
+      performance: rest[0].key,
+      presentation: rest[1].key,
+      message: rest[2].key,
     };
   }
   const google = connection();
+  const workshopLabel = (i) => google.workshopLabels[i] || `Workshop ${workshops[i].number}`;
 
   // ── show the follow-up question for each ticked role ────────
   const followUps = [...form.querySelectorAll("[data-show-if]")];
@@ -72,6 +102,7 @@
     check("f-email", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v("email")), "please write a valid email, like you@example.com");
     const roles = chosen();
     check("f-roles", roles.length > 0, "please choose at least one");
+    if (roles.includes("attendee")) check("f-workshops", chosenWorkshops().length > 0, "please choose at least one workshop (or all of them)");
     if (roles.includes("performer")) check("f-performance", v("performance").length > 0, "tell us a little about what you'd perform");
     if (roles.includes("presenter")) check("f-presentation", v("presentation").length > 0, "tell us a little about what you'd present");
     return problems;
@@ -104,13 +135,18 @@
     }
 
     const roles = chosen();
+    const picked = roles.includes("attendee") ? chosenWorkshops().map(workshopLabel) : [];
+    let message = form.elements.message.value.trim();
     const data = new URLSearchParams();
     data.append(google.name, form.elements.name.value.trim());
     data.append(google.email, form.elements.email.value.trim());
     roles.forEach((r) => data.append(google.roles, google.roleLabels[r]));
+    if (google.workshops) picked.forEach((w) => data.append(google.workshops, w));
+    // A Google Form without the workshops question still gets the choice, inside the last box.
+    else if (picked.length) message = `Workshops: ${picked.join(", ")}` + (message ? `\n\n${message}` : "");
     data.append(google.performance, roles.includes("performer") ? form.elements.performance.value.trim() : "");
     data.append(google.presentation, roles.includes("presenter") ? form.elements.presentation.value.trim() : "");
-    data.append(google.message, form.elements.message.value.trim());
+    data.append(google.message, message);
 
     submit.disabled = true;
     setStatus("sending…");

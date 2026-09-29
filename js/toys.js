@@ -1,7 +1,6 @@
-// Floating controls. There are three versions to compare — knots, code, orbits —
-// each in js/toys/. Pick one with ?toys=knots|code|orbits or the switcher (top right).
+// Floating controls: the hanging knot tags (js/toys/knots.js).
 
-// Small helpers shared by the versions.
+// Small helpers used by the knots.
 window.ToyKit = {
   el(tag, props = {}, ...children) {
     const node = document.createElement(tag);
@@ -57,53 +56,10 @@ window.ToyKit = {
 
 window.ToyModes = {};
 
-window.Toys = (() => {
-  const root = document.getElementById("toys");
-  const MODES = ["knots", "code", "orbits"];
-  let current = null;
-  let reduced = false;
-
-  const switcher = ToyKit.el("div", { className: "compare" });
-  switcher.setAttribute("role", "group");
-  switcher.setAttribute("aria-label", "Compare button versions");
-  switcher.append(ToyKit.el("span", { className: "compare__label", textContent: "compare buttons:" }));
-  const buttons = MODES.map((name) => {
-    const b = ToyKit.el("button", { type: "button", textContent: name });
-    b.addEventListener("click", () => use(name));
-    switcher.append(b);
-    return b;
-  });
-  document.body.append(switcher);
-
-  function pick() {
-    const fromUrl = new URLSearchParams(location.search).get("toys");
-    if (MODES.includes(fromUrl)) return fromUrl;
-    try {
-      const saved = localStorage.getItem("toys");
-      if (MODES.includes(saved)) return saved;
-    } catch {}
-    return MODES[0];
-  }
-
-  function use(name) {
-    if (current) current.unmount();
-    root.replaceChildren();
-    Sound.reset();
-    Visuals.post("");
-    current = ToyModes[name];
-    current.mount(root, { reduced });
-    root.dataset.mode = name;
-    buttons.forEach((b, i) => b.setAttribute("aria-pressed", MODES[i] === name));
-    try { localStorage.setItem("toys", name); } catch {}
-    const url = new URL(location.href);
-    url.searchParams.set("toys", name);
-    history.replaceState(null, "", url);
-  }
-
-  return {
-    start(opts = {}) {
-      reduced = !!opts.reduced;
-      use(pick());
-    },
-  };
-})();
+window.Toys = {
+  start(opts = {}) {
+    const root = document.getElementById("toys");
+    root.dataset.mode = "knots";
+    ToyModes.knots.mount(root, { reduced: !!opts.reduced });
+  },
+};

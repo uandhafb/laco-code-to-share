@@ -16,31 +16,36 @@
 window.SITE = {
   series: {
     title: "LAÇO",
-    subtitle: "live code to share",
-    kicker: "a series of livecoding workshops",
-    tagline: "[One sentence about the series: e.g. learn to make music and visuals with code, from zero, together.]",
-    dates: "2026",
-    place: "Visualization Studio, Concordia Library",
+    subtitle: "code to share",
+    kicker: "a series of live coding workshops",
+    // The square brackets here are part of the design, not a placeholder.
+    tagline: "[Free, all levels welcome. Share and experience art made with code]",
+    dates: "2026.2027",
+    place: "Visualization Studio, Concordia University",
+    // The dictionary-style line at the top of "about".
+    definition: {
+      word: "laço",
+      say: "/ˈla.su/ (Brazilian Portuguese):",
+      meaning: "a knot, a bow, a loop; also the ties or bonds between people.",
+    },
+    // Paragraphs of "about". Text between **double stars** is shown in bold.
     about: [
-      "[Paragraph 1: what the series is, who it is for, and why livecoding.]",
-      "[Paragraph 2: format — how many sessions, how long, hands-on, free or paid, no experience needed?]",
-      "[Paragraph 3: who is organising it, with thanks to partners or supporters.]",
+      "**LAÇO: code to share** is a series of free workshops that brings people together to build connections through live coding — the practice of creating music and visuals with the code on screen for everyone to see.",
+      "All levels are welcome, no experience needed. Come to learn, to share, or just to hang out!",
     ],
     bring: [
-      "a laptop with a recent Chrome or Firefox",
+      "a laptop",
       "headphones",
       "curiosity — no coding or music experience needed",
     ],
     signup: {
       intro: "Join as an attendee, a performer or a presenter — or all three.",
-      review: "We're reviewing registrations as they come in and will fill the workshops accordingly. We'll email you to confirm your place.",
+      review: "Registrations are reviewed as they come in, until spots are filled. Performers and presenters will be contacted by email to confirm the details.",
       roles: {
-        attendee: "come to the workshops and learn",
-        performer: "perform live code (music, visuals, or both)",
-        presenter: "present your work, a tool or a project",
+        performer: "perform live code (music, visuals, web choreography)",
+        presenter: "present first steps and tips for your language",
       },
-      thanks: "Thanks — you're in the loop! We'll review your registration and email you soon.",
-      privacy: "Your answers go to the LAÇO organisers (stored in a Google Form) and are only used to organise the workshops.",
+      thanks: "Thanks, you're in the loop! If you signed up to perform or present, we'll email you to confirm the details.",
 
       // Connects the form to your Google Form. See "Registration form" in README.md.
       // Paste the pre-filled link from Google Forms into `prefilled` and the rest is read from it.
@@ -48,7 +53,7 @@ window.SITE = {
         prefilled: "https://docs.google.com/forms/d/e/1FAIpQLSf7m7VMzc_b3it6MFxKsAzqx8wO7-pXBqSlb4AY7YehVebVyg/viewform?usp=pp_url&entry.589212447=uandha&entry.136257565=@ndjksjkdb&entry.623795492=Attendee&entry.623795492=Performer&entry.623795492=Presenter&entry.1664604987=xcxc&entry.1213673293=czcx&entry.643209352=czc",
       },
     },
-    contact: "[you@example.com]",
+    contact: "uandha.fernandesbarbosa@mail.concordia.ca",
     links: [
       { label: "[instagram]", url: "[https://instagram.com/...]" },
       { label: "[mastodon]", url: "[https://...]" },
@@ -88,7 +93,7 @@ loop(1, 0.83, 1, 0.23).add(loop(-1, 1, 0.31, 0.85))
       number: "01",
       title: "[WORKSHOP 1 TITLE — e.g. Patterns: first steps with Strudel]",
       date: "[DAY DD MONTH, HH:MM–HH:MM]",
-      place: "[ROOM / VENUE]",
+      place: "Visualization Studio, Webster Library",
       facilitator: "[FACILITATOR NAME]",
       level: "beginner",
       description: [
@@ -118,7 +123,7 @@ stack(
       number: "02",
       title: "[WORKSHOP 2 TITLE — e.g. Shaders for everyone: visuals with Hydra]",
       date: "[DAY DD MONTH, HH:MM–HH:MM]",
-      place: "[ROOM / VENUE]",
+      place: "Visualization Studio, Webster Library",
       facilitator: "[FACILITATOR NAME]",
       level: "beginner",
       description: [
@@ -145,7 +150,7 @@ stack(
       number: "03",
       title: "[WORKSHOP 3 TITLE — e.g. Algorave: performing together]",
       date: "[DAY DD MONTH, HH:MM–HH:MM]",
-      place: "[ROOM / VENUE]",
+      place: "Visualization Studio, Webster Library",
       facilitator: "[FACILITATOR NAME]",
       level: "all levels",
       description: [

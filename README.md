@@ -1,6 +1,6 @@
-# LAÇO: live code to share
+# LAÇO: code to share
 
-The website for **LAÇO**, a series of livecoding workshops at the Visualization Studio, Concordia Library (2026).
+The website for **LAÇO**, a series of free live coding workshops for all levels at the Visualization Studio, Webster Library, Concordia University (2026.2027).
 
 **Live site: https://uandhafb.github.io/laco-code-to-share/**
 
@@ -85,39 +85,30 @@ The form's texts (intro, the "we're reviewing registrations" note, role descript
 ### Connect it (once)
 
 1. Go to [forms.google.com](https://forms.google.com) and create a blank form, for example **"LAÇO — registration"**. As its description, you can paste: *We're reviewing registrations as they come in and will fill the workshops accordingly. We'll email you to confirm your place.*
-2. Add these six questions, **in this order**:
+2. Add these seven questions, **in this order**:
 
    | # | question | type | required |
    |---|---|---|---|
    | 1 | Name | Short answer | yes |
    | 2 | Email | Short answer | yes |
    | 3 | I'd like to take part as | Checkboxes, with the options **Attendee**, **Performer**, **Presenter** (in that order) | yes |
-   | 4 | About your performance | Paragraph | no |
-   | 5 | About your presentation | Paragraph | no |
-   | 6 | Anything else? (questions, ideas, access needs) | Paragraph | no |
+   | 4 | Which workshops would you like to join? | Checkboxes, one option per workshop: **Workshop 01**, **Workshop 02**, **Workshop 03** (same order as the site) | no |
+   | 5 | About your performance | Paragraph | no |
+   | 6 | About your presentation | Paragraph | no |
+   | 7 | Anything else? (questions, ideas, access needs) | Paragraph | no |
 
    Don't add "response validation"; the site already checks the answers.
 3. In **Settings → Responses**, set **Collect email addresses** to *Do not collect*, and leave **Limit to 1 response** off. Both would make Google ask people to sign in, which blocks answers coming from the site.
 4. In the **Responses** tab, click **Link to Sheets** to get a spreadsheet. Then open **⋮ → Get email notifications for new responses**.
-5. Click **⋮** (top right) → **Get pre-filled link**. Type `NAME`, `EMAIL`, tick **all three** options, type `PERF`, `PRES` and `NOTE`, click **Get link**, then **Copy link**.
+5. Click **⋮** (top right) → **Get pre-filled link**. Type `NAME`, `EMAIL`, tick **all** the role options and **all** the workshop options, type `PERF`, `PRES` and `NOTE`, click **Get link**, then **Copy link**.
 6. Paste that link into `series.signup.google.prefilled` in [js/content.js](js/content.js), replacing `[PASTE THE GOOGLE FORM PRE-FILLED LINK HERE]`.
 7. Send one test registration from the site and check that it appears in the form's **Responses** tab.
 
 Until step 6 is done, the form says it isn't connected yet instead of sending.
 
+The workshops question (4) is optional in the Google Form: without it, the site writes the attendee's choice at the start of the "anything else?" answer instead. If you add or remove a workshop on the site, add or remove its option in the Google Form too, and paste a new pre-filled link.
+
 Google's notification email only says that a new response arrived; the answers themselves are in the Sheet. If you'd like every answer written out in the email, a short Google Apps Script can do that.
-
-## Comparing the three button versions (temporary)
-
-While the design is being decided, the "compare buttons" box at the top right switches between three versions of the controls. Each one can also be opened with a link:
-
-| link | version |
-|---|---|
-| `?toys=knots` | hanging tags on strings (described above), the current favourite |
-| `?toys=code` | code fragments that you drag into "the loop" |
-| `?toys=orbits` | drums and melody as dots going round two linked loops |
-
-Once one is chosen, the other two (`js/toys/fragments.js`, `js/toys/orbits.js`) and the switcher can be removed.
 
 ## The live site
 
@@ -138,9 +129,8 @@ GitHub Pages publishes the `main` branch (folder `/ (root)`, set in **Settings �
 | `js/sound.js` | Strudel setup, start/stop, tempo, the `drums()` / `melody()` helpers |
 | `js/visuals.js` | sends code, drum pulses and the pointer to the Hydra iframe |
 | `js/editor.js` | the "edit the code" panel |
-| `js/toys.js` | the version switcher and shared drag helpers |
+| `js/toys.js` | starts the knots, and shared drag helpers |
 | `js/toys/knots.js` | the hanging tags, the wind and the loop |
-| `js/toys/fragments.js`, `js/toys/orbits.js` | the two other versions being compared |
 | `js/tied.js` | the ropes between about, sign up and the workshops |
 | `js/signup.js` | the registration form: follow-up questions, checks, sending to Google Forms |
 | `js/main.js` | fills the page from `content.js` and connects everything |

@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Also update these three lines when you replace the placeholders in js/content.js -->
-<title>LAÇO: live code to share</title>
-<meta name="description" content="[One sentence about the series.]">
-<meta property="og:title" content="LAÇO: live code to share">
-<meta property="og:description" content="[One sentence about the series.]">
+<title>LAÇO: code to share</title>
+<meta name="description" content="LAÇO: a series of live coding workshops (2026.2027) at the Visualization Studio, Webster Library, Concordia University. Free, all levels welcome. Share and experience art made with code.">
+<meta property="og:title" content="LAÇO: code to share">
+<meta property="og:description" content="Free, all levels welcome. Share and experience art made with code. Live coding workshops at the Visualization Studio, Webster Library, Concordia University (2026.2027).">
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='black'/><text x='2' y='13' font-family='monospace' font-size='13' fill='%23d4ff3a'>&gt;</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,8 +30,8 @@
     <p class="hero__tagline"><span id="tagline"></span></p>
     <p class="hero__meta"><span id="dates"></span> <span aria-hidden="true">·</span> <span id="place"></span></p>
     <div class="hero__actions">
-      <a class="btn btn--primary" id="hero-signup" href="#signup">sign up →</a>
-      <a class="btn" href="#workshops">see the workshops ↓</a>
+      <a class="btn btn--primary" id="hero-signup" href="#signup">sign up ↓</a>
+      <a class="btn" href="#workshops">see the workshops →</a>
     </div>
   </header>
 
@@ -66,10 +66,16 @@
           </div>
           <fieldset class="field" id="f-roles">
             <legend>I'd like to take part as <span class="muted">(choose one or more)</span></legend>
-            <label class="check"><input type="checkbox" name="role" value="attendee"> <b>attendee</b> <span class="check__hint" data-role-hint="attendee"></span></label>
+            <label class="check"><input type="checkbox" name="role" value="attendee"> <b>attendee</b></label>
             <label class="check"><input type="checkbox" name="role" value="performer"> <b>performer</b> <span class="check__hint" data-role-hint="performer"></span></label>
             <label class="check"><input type="checkbox" name="role" value="presenter"> <b>presenter</b> <span class="check__hint" data-role-hint="presenter"></span></label>
             <p class="field__error" id="f-roles-error"></p>
+          </fieldset>
+          <fieldset class="field" id="f-workshops" data-show-if="attendee" hidden>
+            <legend>which workshops would you like to join?</legend>
+            <div id="f-workshop-list"></div>
+            <label class="check check--all"><input type="checkbox" id="f-all"> <b>all of them</b></label>
+            <p class="field__error" id="f-workshops-error"></p>
           </fieldset>
           <div class="field" data-show-if="performer" hidden>
             <label for="f-performance">tell us about your performance</label>
@@ -95,10 +101,9 @@
           </div>
           <button type="submit" class="btn btn--primary btn--big">send registration →</button>
           <p class="form__status" id="signup-status" role="status" aria-live="polite"></p>
-          <p class="form__privacy muted" id="signup-privacy"></p>
         </form>
 
-        <p>questions? <a id="contact" href="#"></a></p>
+        <p>get in touch: <a id="contact" href="#"></a></p>
       </section>
     </div>
 
@@ -126,7 +131,7 @@
   </footer>
 </main>
 
-<!-- Floating controls: filled in by js/toys/*.js (knots, code or orbits) -->
+<!-- Floating controls: the knot tags, filled in by js/toys/knots.js -->
 <div id="toys" class="toys" aria-label="Sound controls" role="group"></div>
 
 <!-- Live-code panel -->
@@ -165,8 +170,6 @@
 <script src="js/editor.js"></script>
 <script src="js/toys.js"></script>
 <script src="js/toys/knots.js"></script>
-<script src="js/toys/fragments.js"></script>
-<script src="js/toys/orbits.js"></script>
 <script src="js/main.js"></script>
 <script src="js/signup.js"></script>
 <script src="js/tied.js"></script>
