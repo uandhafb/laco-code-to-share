@@ -241,8 +241,8 @@ ToyModes.knots = (() => {
       lastTouch = -Infinity;
       lastTs = 0;
       carried = null;
-      HALF_W = small() ? 62 : 86;
-      HALF_H = small() ? 33 : 43;
+      HALF_W = small() ? 55 : 58;
+      HALF_H = small() ? 29 : 29;
       BOND_LEN = 2 * HALF_W + 10;   // tied tags hang side by side
       const layer = svg("svg", { class: "toys__svg", "aria-hidden": "true" });
       ropeLayer = svg("g");
