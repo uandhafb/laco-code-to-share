@@ -164,6 +164,43 @@ main { position: relative; transition: opacity 0.4s; }
 }
 .block--wide { width: min(1080px, calc(100% - 2 * var(--gutter))); }
 
+/* ── registration form ─────────────────────────────────────── */
+.signup__review { border-left: 3px solid var(--accent); background: rgba(212, 255, 58, 0.08); padding: 0.6em 0.9em; }
+.form { position: relative; display: grid; gap: 1.3rem; margin: 1.8rem 0 1.6rem; }
+.field { display: grid; gap: 0.45rem; min-width: 0; margin: 0; padding: 0; border: 0; }
+.field[hidden] { display: none; }
+.field > label, .field legend { font-weight: 700; font-size: 1.05rem; }
+.field legend { padding: 0; margin-bottom: 0.6rem; }
+.form input:not([type="checkbox"]), .form textarea {
+  width: 100%;
+  font: inherit; font-size: 1.05rem;
+  color: var(--ink); background: rgba(0, 0, 0, 0.65);
+  border: 1px solid var(--line);
+  padding: 0.7em 0.8em;
+}
+.form textarea { min-height: 7.5em; line-height: 1.5; resize: vertical; }
+.form ::placeholder { color: #9a9aa6; }
+.form input:focus-visible, .form textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 0; border-color: var(--accent); }
+.form [aria-invalid="true"] { border-color: var(--error); }
+.field__error { margin: 0; color: var(--error); font-size: 0.95rem; }
+.field__error:empty { display: none; }
+.check {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2em 0.6em;
+  margin-bottom: 0.5rem; padding: 0.6em 0.8em;
+  font-size: 1.05rem; cursor: pointer;
+  border: 1px solid var(--line);
+}
+.check input { width: 1.15em; height: 1.15em; accent-color: var(--accent); align-self: center; flex: none; }
+.check:has(input:checked) { border-color: var(--accent); background: rgba(212, 255, 58, 0.08); }
+.check__hint { color: var(--muted); font-size: 0.95rem; }
+.field[data-invalid] .check { border-color: var(--error); }
+.form__trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form button[disabled] { opacity: 0.6; cursor: wait; }
+.form__status { margin: 0; min-height: 1.4em; font-size: 1rem; }
+.form__status[data-kind="error"] { color: var(--error); }
+.form__privacy { margin: 0; font-size: 0.9rem; }
+.form__thanks { margin: 0; padding: 1em 1.1em; font-size: 1.2rem; font-weight: 700; color: var(--accent); border: 2px solid var(--accent); }
+
 /* ── the tied part: about + sign up (left) and workshops (right), joined by ropes ── */
 .tied {
   position: relative;

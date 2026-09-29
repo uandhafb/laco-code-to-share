@@ -32,9 +32,21 @@ window.SITE = {
       "curiosity — no coding or music experience needed",
     ],
     signup: {
-      label: "sign up",
-      url: "[https://SIGN-UP-FORM-LINK]",
-      note: "[Places are limited to N people per workshop.]",
+      intro: "Join as an attendee, a performer or a presenter — or all three.",
+      review: "We're reviewing registrations as they come in and will fill the workshops accordingly. We'll email you to confirm your place.",
+      roles: {
+        attendee: "come to the workshops and learn",
+        performer: "perform live code (music, visuals, or both)",
+        presenter: "present your work, a tool or a project",
+      },
+      thanks: "Thanks — you're in the loop! We'll review your registration and email you soon.",
+      privacy: "Your answers go to the LAÇO organisers (stored in a Google Form) and are only used to organise the workshops.",
+
+      // Connects the form to your Google Form. See "Registration form" in README.md.
+      // Paste the pre-filled link from Google Forms into `prefilled` and the rest is read from it.
+      google: {
+        prefilled: "https://docs.google.com/forms/d/e/1FAIpQLSf7m7VMzc_b3it6MFxKsAzqx8wO7-pXBqSlb4AY7YehVebVyg/viewform?usp=pp_url&entry.589212447=uandha&entry.136257565=@ndjksjkdb&entry.623795492=Attendee&entry.623795492=Performer&entry.623795492=Presenter&entry.1664604987=xcxc&entry.1213673293=czcx&entry.643209352=czc",
+      },
     },
     contact: "[you@example.com]",
     links: [

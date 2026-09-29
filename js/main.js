@@ -22,9 +22,12 @@
   $("place").textContent = series.place;
   $("about-text").append(...series.about.map((p) => el("p", { textContent: p })));
   $("bring").append(...series.bring.map((b) => el("li", { textContent: b })));
-  $("signup-note").textContent = series.signup.note;
-  $("signup-link").href = safeUrl(series.signup.url);
-  $("signup-link").textContent = series.signup.label + " →";
+  $("signup-intro").textContent = series.signup.intro;
+  $("signup-review").textContent = series.signup.review;
+  $("signup-privacy").textContent = series.signup.privacy;
+  document.querySelectorAll("[data-role-hint]").forEach((el) => {
+    el.textContent = "— " + series.signup.roles[el.dataset.roleHint];
+  });
   $("contact").href = "mailto:" + series.contact;
   $("contact").textContent = series.contact;
   series.links.forEach((l, i) => {

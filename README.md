@@ -17,6 +17,7 @@ It's plain HTML, CSS and JavaScript with no build step and nothing to install, s
   - `PIXELATE`, `NOISE` (`.modulate(noise(3), .1)`) and `KALEID` (`.kaleid(5)`) change the visuals.
 - **The wind:** the strings swing with the drums. Every 8 bars the wind ties or unties a tag by itself, so the page keeps changing even when nobody touches it. It never silences both drums and melody, and it waits 10 seconds after anyone touches a tag.
 - **The loop:** a box that shows the code playing right now, for example `stack(drums, melody).jux(rev)` and `src(o0).kaleid(5).out()`. People who don't read code can still see what each tag does.
+- **Registration form:** in the sign-up box. People choose to take part as an **attendee**, **performer** and/or **presenter**. Performers and presenters get a follow-up box to describe their performance or presentation (languages, tools, length). The answers go to a Google Form (see [Registration form](#registration-form)).
 - **About, sign up and workshops:** the sections below the opening screen, tied together with ropes that flash on each drum hit. Each workshop has its own sound and visuals scene ("play this scene").
 - **Start sound / edit the code:** two buttons in the bottom-right corner. The code panel lets anyone edit the Strudel and Hydra code. Ctrl/⌘+Enter runs it and Ctrl+. stops it.
 
@@ -75,6 +76,37 @@ osc(10, 0.1, () => pulse * 2).kaleid(4).rotate(() => pointer.x).out()
 
 Don't use output `o3` in scenes; the tags use it for their visual effects.
 
+## Registration form
+
+The form on the site is styled like the rest of the page, and its answers go to a **Google Form that you own**. You get every registration in a Google Sheet, plus an email when a new one arrives.
+
+The form's texts (intro, the "we're reviewing registrations" note, role descriptions, thank-you message) are in `series.signup` in [js/content.js](js/content.js).
+
+### Connect it (once)
+
+1. Go to [forms.google.com](https://forms.google.com) and create a blank form, for example **"LAÇO — registration"**. As its description, you can paste: *We're reviewing registrations as they come in and will fill the workshops accordingly. We'll email you to confirm your place.*
+2. Add these six questions, **in this order**:
+
+   | # | question | type | required |
+   |---|---|---|---|
+   | 1 | Name | Short answer | yes |
+   | 2 | Email | Short answer | yes |
+   | 3 | I'd like to take part as | Checkboxes, with the options **Attendee**, **Performer**, **Presenter** (in that order) | yes |
+   | 4 | About your performance | Paragraph | no |
+   | 5 | About your presentation | Paragraph | no |
+   | 6 | Anything else? (questions, ideas, access needs) | Paragraph | no |
+
+   Don't add "response validation"; the site already checks the answers.
+3. In **Settings → Responses**, set **Collect email addresses** to *Do not collect*, and leave **Limit to 1 response** off. Both would make Google ask people to sign in, which blocks answers coming from the site.
+4. In the **Responses** tab, click **Link to Sheets** to get a spreadsheet. Then open **⋮ → Get email notifications for new responses**.
+5. Click **⋮** (top right) → **Get pre-filled link**. Type `NAME`, `EMAIL`, tick **all three** options, type `PERF`, `PRES` and `NOTE`, click **Get link**, then **Copy link**.
+6. Paste that link into `series.signup.google.prefilled` in [js/content.js](js/content.js), replacing `[PASTE THE GOOGLE FORM PRE-FILLED LINK HERE]`.
+7. Send one test registration from the site and check that it appears in the form's **Responses** tab.
+
+Until step 6 is done, the form says it isn't connected yet instead of sending.
+
+Google's notification email only says that a new response arrived; the answers themselves are in the Sheet. If you'd like every answer written out in the email, a short Google Apps Script can do that.
+
 ## Comparing the three button versions (temporary)
 
 While the design is being decided, the "compare buttons" box at the top right switches between three versions of the controls. Each one can also be opened with a link:
@@ -110,6 +142,7 @@ GitHub Pages publishes the `main` branch (folder `/ (root)`, set in **Settings �
 | `js/toys/knots.js` | the hanging tags, the wind and the loop |
 | `js/toys/fragments.js`, `js/toys/orbits.js` | the two other versions being compared |
 | `js/tied.js` | the ropes between about, sign up and the workshops |
+| `js/signup.js` | the registration form: follow-up questions, checks, sending to Google Forms |
 | `js/main.js` | fills the page from `content.js` and connects everything |
 
 Strudel (`@strudel/web@1.3.0`) and Hydra (`hydra-synth@1.4.0`) load from unpkg with integrity hashes. To upgrade one, change the version in its URL and update the `integrity` value.

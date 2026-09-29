@@ -7,7 +7,10 @@
   const NS = "http://www.w3.org/2000/svg";
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const floaters = [...root.querySelectorAll(".block, .workshop")].map((el) => ({ el, phase: Math.random() * 6 }));
+  // The sign-up box holds the form, so it stays still: nobody should type into a moving box.
+  const floaters = [...root.querySelectorAll(".block, .workshop")]
+    .filter((el) => el.id !== "signup")
+    .map((el) => ({ el, phase: Math.random() * 6 }));
   let edges = [], paths = [], raf = 0, visible = false, kick = 0, columns = 0;
 
   // Which boxes are tied to which. Two columns: about–sign up on the left, about across

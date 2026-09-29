@@ -49,8 +49,55 @@
 
       <section class="block" id="signup" aria-labelledby="signup-h">
         <h2 id="signup-h">sign up</h2>
-        <p id="signup-note"></p>
-        <p><a class="btn btn--primary btn--big" id="signup-link" href="#" target="_blank" rel="noopener">sign up →</a></p>
+        <p id="signup-intro"></p>
+        <p class="signup__review" id="signup-review"></p>
+
+        <!-- Registration form: js/signup.js sends it to a Google Form (see README) -->
+        <form id="signup-form" class="form" novalidate>
+          <div class="field">
+            <label for="f-name">name</label>
+            <input id="f-name" name="name" autocomplete="name" required>
+            <p class="field__error" id="f-name-error"></p>
+          </div>
+          <div class="field">
+            <label for="f-email">email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required>
+            <p class="field__error" id="f-email-error"></p>
+          </div>
+          <fieldset class="field" id="f-roles">
+            <legend>I'd like to take part as <span class="muted">(choose one or more)</span></legend>
+            <label class="check"><input type="checkbox" name="role" value="attendee"> <b>attendee</b> <span class="check__hint" data-role-hint="attendee"></span></label>
+            <label class="check"><input type="checkbox" name="role" value="performer"> <b>performer</b> <span class="check__hint" data-role-hint="performer"></span></label>
+            <label class="check"><input type="checkbox" name="role" value="presenter"> <b>presenter</b> <span class="check__hint" data-role-hint="presenter"></span></label>
+            <p class="field__error" id="f-roles-error"></p>
+          </fieldset>
+          <div class="field" data-show-if="performer" hidden>
+            <label for="f-performance">tell us about your performance</label>
+            <textarea id="f-performance" name="performance" rows="4"
+              placeholder="what you'll perform, which languages or tools (Strudel, Hydra, TidalCycles, SuperCollider…), how long, and what you need (sound, projection…)"></textarea>
+            <p class="field__error" id="f-performance-error"></p>
+          </div>
+          <div class="field" data-show-if="presenter" hidden>
+            <label for="f-presentation">tell us about your presentation</label>
+            <textarea id="f-presentation" name="presentation" rows="4"
+              placeholder="the topic, which languages or tools, the format (talk, demo, hands-on…), and how long"></textarea>
+            <p class="field__error" id="f-presentation-error"></p>
+          </div>
+          <div class="field">
+            <label for="f-message">anything else? <span class="muted">questions, ideas, access needs… (optional)</span></label>
+            <textarea id="f-message" name="message" rows="3"
+              placeholder="anything you'd like to ask or tell us, including anything that would make the workshops easier or more comfortable for you"></textarea>
+          </div>
+          <!-- left empty by people; bots tend to fill it -->
+          <div class="form__trap" aria-hidden="true">
+            <label for="f-website">website</label>
+            <input id="f-website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+          <button type="submit" class="btn btn--primary btn--big">send registration →</button>
+          <p class="form__status" id="signup-status" role="status" aria-live="polite"></p>
+          <p class="form__privacy muted" id="signup-privacy"></p>
+        </form>
+
         <p>questions? <a id="contact" href="#"></a></p>
       </section>
     </div>
@@ -121,6 +168,7 @@
 <script src="js/toys/fragments.js"></script>
 <script src="js/toys/orbits.js"></script>
 <script src="js/main.js"></script>
+<script src="js/signup.js"></script>
 <script src="js/tied.js"></script>
 </body>
 </html>
