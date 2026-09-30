@@ -196,6 +196,16 @@ main { position: relative; transition: opacity 0.4s; }
 .check:has(input:checked) { border-color: var(--accent); background: rgba(212, 255, 58, 0.08); }
 .check__hint { color: var(--muted); font-size: 0.9rem; }
 .check--all { border-style: dashed; }
+.rank { margin: 0.9rem 0 0; padding: 0; border: 0; display: grid; gap: 0.4rem; }
+.rank legend { padding: 0; margin-bottom: 0.5rem; font-weight: 700; }
+.rank__row { display: flex; align-items: center; gap: 0.6rem; }
+.rank select {
+  font: inherit; color: var(--ink); background: rgba(0, 0, 0, 0.65);
+  border: 1px solid var(--line); padding: 0.3em 0.4em; min-width: 4.2em;
+}
+.rank select:focus-visible { outline: 2px solid var(--accent); outline-offset: 0; }
+.rank[data-invalid] select { border-color: var(--error); }
+.rank label { cursor: pointer; }
 .field[data-invalid] .check { border-color: var(--error); }
 .form__trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .form button[disabled] { opacity: 0.6; cursor: wait; }
@@ -251,6 +261,13 @@ main { position: relative; transition: opacity 0.4s; }
 .prose p:last-child { margin-bottom: 0; }
 
 .dash-list { list-style: none; padding: 0; margin: 0; }
+/* the steps of a workshop session */
+.session { list-style: none; margin: 0 0 1.2rem; padding: 0; display: grid; gap: 0.5rem; }
+.session li { position: relative; padding-left: 2em; }
+.session li::before { content: "//"; position: absolute; left: 0; color: var(--accent); font-weight: 700; opacity: 0.8; }
+.session b { color: var(--ink); }
+.where { margin: 0 0 1.2rem; padding: 0.7em 0.9em; border-left: 3px solid var(--accent-2); background: rgba(255, 79, 216, 0.07); }
+.where__map { display: inline-block; margin-top: 0.4rem; font-weight: 700; }
 .dash-list li::before { content: "- "; color: var(--accent); }
 
 /* ── workshops ─────────────────────────────────────────────── */

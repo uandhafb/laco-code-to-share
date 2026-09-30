@@ -47,19 +47,11 @@
       ...[["when", w.date], ["where", w.place], ["with", w.facilitator], ["level", w.level]]
         .filter(([, v]) => v)
         .map(([k, v]) => el("div", {}, el("dt", { textContent: k }), el("dd", { textContent: v }))));
-    const play = el("button", { type: "button", className: "btn btn--primary", textContent: "▶ play this scene" });
-    const edit = el("button", { type: "button", className: "btn", textContent: "{ } open its code" });
-    play.addEventListener("click", () => loadScene(i, { sound: true }));
-    edit.addEventListener("click", () => {
-      loadScene(i, { sound: soundOn });
-      Editor.open();
-    });
     const article = el("article", { className: "workshop" },
       el("span", { className: "workshop__num", textContent: w.number, ariaHidden: "true" }),
       el("h3", { className: "workshop__title", textContent: w.title }),
       meta,
-      ...w.description.map((p) => el("p", { textContent: p })),
-      el("div", { className: "workshop__actions" }, play, edit));
+      ...w.description.map((p) => el("p", { textContent: p })));
     article.dataset.scene = i;
     $("workshop-list").append(el("li", {}, article));
     return article;

@@ -19,8 +19,7 @@
   const workshopBoxes = workshops.map((w, i) => {
     const box = el("input", { type: "checkbox", name: "workshop", value: String(i) });
     list.append(el("label", { className: "check" }, box, " ",
-      el("b", { textContent: w.number }), " ",
-      el("span", { textContent: w.title }), " ",
+      el("b", { textContent: `workshop ${w.number}` }), " ",
       el("span", { className: "check__hint", textContent: w.date })));
     return box;
   });
@@ -31,6 +30,36 @@
     setError("f-workshops", "");
   }));
   const chosenWorkshops = () => workshopBoxes.filter((b) => b.checked).map((b) => Number(b.value));
+
+  // ── "rank your preferred dates" (performers and presenters) ──
+  // One dropdown per date: 1st … 4th choice, or "–" to leave a date out.
+  const ordinal = (n) => ["1st", "2nd", "3rd"][n - 1] || `${n}th`;
+  const ranks = {};
+  form.querySelectorAll(".rank").forEach((set) => {
+    ranks[set.dataset.for] = workshops.map((w, i) => {
+      const select = el("select", { id: `${set.id}-${i}` },
+        el("option", { value: "", textContent: "–" }),
+        ...workshops.map((_, n) => el("option", { value: String(n + 1), textContent: ordinal(n + 1) })));
+      select.addEventListener("change", () => setError(set.id, ""));
+      set.append(el("div", { className: "rank__row" },
+        select, " ",
+        el("label", { htmlFor: select.id, textContent: w.date })));
+      return select;
+    });
+  });
+  // "1. Wednesday, November 11 · 13:30–16:30; 2. …" in the order the person ranked them
+  const rankText = (key) => ranks[key]
+    .map((s, i) => ({ n: Number(s.value), date: workshops[i].date }))
+    .filter((r) => r.n)
+    .sort((a, b) => a.n - b.n)
+    .map((r) => `${r.n}. ${r.date}`)
+    .join("; ");
+  function checkRank(key) {
+    const values = ranks[key].map((s) => s.value).filter(Boolean);
+    if (!values.length) return "please rank at least one date";
+    if (new Set(values).size !== values.length) return "each choice can only be used once";
+    return "";
+  }
 
   // ── Google Form connection ──────────────────────────────────
   // Read from the "pre-filled link" Google Forms makes (⋮ → Get pre-filled link).
@@ -103,12 +132,20 @@
     const roles = chosen();
     check("f-roles", roles.length > 0, "please choose at least one");
     if (roles.includes("attendee")) check("f-workshops", chosenWorkshops().length > 0, "please choose at least one workshop (or all of them)");
-    if (roles.includes("performer")) check("f-performance", v("performance").length > 0, "tell us a little about what you'd perform");
-    if (roles.includes("presenter")) check("f-presentation", v("presentation").length > 0, "tell us a little about what you'd present");
+    if (roles.includes("performer")) {
+      check("f-performance", v("performance").length > 0, "tell us a little about what you'd perform");
+      const r = checkRank("performance");
+      check("f-rank-performance", !r, r);
+    }
+    if (roles.includes("presenter")) {
+      check("f-presentation", v("presentation").length > 0, "tell us a little about what you'd present");
+      const r = checkRank("presentation");
+      check("f-rank-presentation", !r, r);
+    }
     return problems;
   }
 
-  form.querySelectorAll("input, textarea").forEach((el) =>
+  form.querySelectorAll("input, textarea, select").forEach((el) =>
     el.addEventListener("input", () => {
       if (el.getAttribute("aria-invalid") === "true") validate();
     }));
@@ -124,7 +161,7 @@
     const problems = validate();
     if (problems.length) {
       const first = document.getElementById(problems[0]);
-      (first.tagName === "FIELDSET" ? first.querySelector("input") : first).focus();
+      (first.tagName === "FIELDSET" ? first.querySelector("input, select") : first).focus();
       setStatus("some answers need a look — see above", "error");
       return;
     }
@@ -144,8 +181,10 @@
     if (google.workshops) picked.forEach((w) => data.append(google.workshops, w));
     // A Google Form without the workshops question still gets the choice, inside the last box.
     else if (picked.length) message = `Workshops: ${picked.join(", ")}` + (message ? `\n\n${message}` : "");
-    data.append(google.performance, roles.includes("performer") ? form.elements.performance.value.trim() : "");
-    data.append(google.presentation, roles.includes("presenter") ? form.elements.presentation.value.trim() : "");
+    // The date ranking goes in the same answer, on its own line.
+    const withRank = (key) => `${form.elements[key].value.trim()}\n\nPreferred dates: ${rankText(key)}`;
+    data.append(google.performance, roles.includes("performer") ? withRank("performance") : "");
+    data.append(google.presentation, roles.includes("presenter") ? withRank("presentation") : "");
     data.append(google.message, message);
 
     submit.disabled = true;

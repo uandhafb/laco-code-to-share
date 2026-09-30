@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Also update these three lines when you replace the placeholders in js/content.js -->
 <title>LAÇO: code to share</title>
-<meta name="description" content="LAÇO: a series of live coding workshops (2026.2027) at the Visualization Studio, Webster Library, Concordia University. Free, all levels welcome. Share and experience art made with code.">
+<meta name="description" content="LAÇO: a series of live coding workshops (2026.2027) at the Visualization Studio, Webster Library, Concordia University. Free and welcoming to all levels. Share and experience art made with code.">
 <meta property="og:title" content="LAÇO: code to share">
-<meta property="og:description" content="Free, all levels welcome. Share and experience art made with code. Live coding workshops at the Visualization Studio, Webster Library, Concordia University (2026.2027).">
+<meta property="og:description" content="Free and welcoming to all levels. Share and experience art made with code. Live coding workshops at the Visualization Studio, Webster Library, Concordia University (2026.2027).">
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='black'/><text x='2' y='13' font-family='monospace' font-size='13' fill='%23d4ff3a'>&gt;</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -80,17 +80,25 @@
           <div class="field" data-show-if="performer" hidden>
             <label for="f-performance">tell us about your performance</label>
             <textarea id="f-performance" name="performance" rows="4"
-              placeholder="what you'll perform, which languages or tools (Strudel, Hydra, TidalCycles, SuperCollider…), how long, and what you need (sound, projection…)"></textarea>
+              placeholder="which language(s) (e.g. Hydra, SuperCollider, TidalCycles, Sonic Pi, Strudel, or other) and what you need (e.g. sound, visuals)"></textarea>
             <p class="field__error" id="f-performance-error"></p>
+            <fieldset class="rank" id="f-rank-performance" data-for="performance">
+              <legend>rank your preferred dates to perform <span class="muted">(1 = first choice)</span></legend>
+            </fieldset>
+            <p class="field__error" id="f-rank-performance-error"></p>
           </div>
           <div class="field" data-show-if="presenter" hidden>
             <label for="f-presentation">tell us about your presentation</label>
             <textarea id="f-presentation" name="presentation" rows="4"
-              placeholder="the topic, which languages or tools, the format (talk, demo, hands-on…), and how long"></textarea>
+              placeholder="which language(s) (e.g. Hydra, SuperCollider, TidalCycles, Sonic Pi, Strudel, or other) and any prerequisites for the public (e.g. installation time)"></textarea>
             <p class="field__error" id="f-presentation-error"></p>
+            <fieldset class="rank" id="f-rank-presentation" data-for="presentation">
+              <legend>rank your preferred dates to present <span class="muted">(1 = first choice)</span></legend>
+            </fieldset>
+            <p class="field__error" id="f-rank-presentation-error"></p>
           </div>
           <div class="field">
-            <label for="f-message">anything else? <span class="muted">questions, ideas, access needs… (optional)</span></label>
+            <label for="f-message">anything else? <span class="muted">(optional)</span></label>
             <textarea id="f-message" name="message" rows="3"
               placeholder="anything you'd like to ask or tell us, including anything that would make the workshops easier or more comfortable for you"></textarea>
           </div>
@@ -109,8 +117,19 @@
 
     <section class="tied__col tied__col--right" id="workshops" aria-labelledby="workshops-h">
       <div class="block" id="workshops-head">
-        <h2 id="workshops-h">workshops</h2>
-        <p class="muted">every workshop has its own sound + visuals scene. press play on one, then open the code and change it.</p>
+        <h2 id="workshops-h">workshops 2026</h2>
+        <p><strong>4 Wednesdays · 13:30–16:30</strong><br>Each session runs 2.5 to 3 hours, with a 15-minute break:</p>
+        <ol class="session">
+          <li><b>learn together</b> — an introduction to the basics of the language</li>
+          <li><b>share / jam</b> — write your own patterns and share them with others (if you like)</li>
+          <li><b>break</b> — 15 minutes</li>
+          <li><b>live coding</b> — live coders and live coderas talk a bit about their work, then perform</li>
+        </ol>
+        <p class="where">
+          <strong>where:</strong> the <a href="https://library.concordia.ca/technology/visualization/" target="_blank" rel="noopener">Visualization Studio</a>,
+          Room LB-314, 3rd floor, Webster Library, Concordia University (1400 De Maisonneuve Blvd. W., Montreal)<br>
+          <a class="where__map" href="https://www.google.com/maps/dir/?api=1&amp;destination=Webster+Library,+1400+De+Maisonneuve+Blvd+W,+Montreal,+QC" target="_blank" rel="noopener">get directions (Google Maps) ↗</a>
+        </p>
       </div>
       <ol id="workshop-list" class="workshops"></ol>
     </section>

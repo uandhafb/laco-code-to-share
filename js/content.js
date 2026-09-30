@@ -19,7 +19,7 @@ window.SITE = {
     subtitle: "code to share",
     kicker: "a series of live coding workshops",
     // The square brackets here are part of the design, not a placeholder.
-    tagline: "[Free, all levels welcome. Share and experience art made with code]",
+    tagline: "[Free and welcoming to all levels. Share and experience art made with code]",
     dates: "2026.2027",
     place: "Visualization Studio, Concordia University",
     // The dictionary-style line at the top of "about".
@@ -91,14 +91,14 @@ loop(1, 0.83, 1, 0.23).add(loop(-1, 1, 0.31, 0.85))
   workshops: [
     {
       number: "01",
-      title: "[WORKSHOP 1 TITLE — e.g. Patterns: first steps with Strudel]",
-      date: "[DAY DD MONTH, HH:MM–HH:MM]",
-      place: "Visualization Studio, Webster Library",
-      facilitator: "[FACILITATOR NAME]",
-      level: "beginner",
+      title: "[WORKSHOP 01 — TBA]",
+      date: "Wednesday, November 4 · 13:30–16:30",
+      place: "Visualization Studio (LB-314, 3rd floor), Webster Library",
+      facilitator: "",   // TODO: add the facilitator's name (empty = hidden)
+      level: "all levels",
       description: [
-        "[What participants will learn and make in this session.]",
-        "[Optional second paragraph: about the facilitator.]",
+        // TODO: replace with what participants will learn and make, and a line about the facilitator.
+        "We're preparing the program for each workshop. It will be announced soon!",
       ],
       scene: {
         strudel: `// a minor groove + a filter sweep
@@ -121,13 +121,14 @@ stack(
     },
     {
       number: "02",
-      title: "[WORKSHOP 2 TITLE — e.g. Shaders for everyone: visuals with Hydra]",
-      date: "[DAY DD MONTH, HH:MM–HH:MM]",
-      place: "Visualization Studio, Webster Library",
-      facilitator: "[FACILITATOR NAME]",
-      level: "beginner",
+      title: "[WORKSHOP 02 — TBA]",
+      date: "Wednesday, November 11 · 13:30–16:30",
+      place: "Visualization Studio (LB-314, 3rd floor), Webster Library",
+      facilitator: "",   // TODO: add the facilitator's name (empty = hidden)
+      level: "all levels",
       description: [
-        "[What participants will learn and make in this session.]",
+        // TODO: replace with what participants will learn and make, and a line about the facilitator.
+        "We're preparing the program for each workshop. It will be announced soon!",
       ],
       scene: {
         strudel: `// chords + a slower groove
@@ -148,13 +149,14 @@ stack(
     },
     {
       number: "03",
-      title: "[WORKSHOP 3 TITLE — e.g. Algorave: performing together]",
-      date: "[DAY DD MONTH, HH:MM–HH:MM]",
-      place: "Visualization Studio, Webster Library",
-      facilitator: "[FACILITATOR NAME]",
+      title: "[WORKSHOP 03 — TBA]",
+      date: "Wednesday, November 25 · 13:30–16:30",
+      place: "Visualization Studio (LB-314, 3rd floor), Webster Library",
+      facilitator: "",   // TODO: add the facilitator's name (empty = hidden)
       level: "all levels",
       description: [
-        "[What participants will learn and make in this session. Maybe it ends with a public performance?]",
+        // TODO: replace with what participants will learn and make, and a line about the facilitator.
+        "We're preparing the program for each workshop. It will be announced soon!",
       ],
       scene: {
         strudel: `// polyrhythm + samples played backwards on one side
@@ -174,6 +176,34 @@ stack(
       .mask(shape(6, () => 0.2 + pulse * 0.4)),
     0.3
   )
+  .out()`,
+      },
+    },
+    {
+      number: "04",
+      title: "[WORKSHOP 04 — TBA]",
+      date: "Wednesday, December 9 · 13:30–16:30",
+      place: "Visualization Studio (LB-314, 3rd floor), Webster Library",
+      facilitator: "",   // TODO: add the facilitator's name (empty = hidden)
+      level: "all levels",
+      description: [
+        // TODO: replace with what participants will learn and make, and a line about the facilitator.
+        "We're preparing the program for each workshop. It will be announced soon!",
+      ],
+      scene: {
+        strudel: `// a slow chord loop over a steady beat
+stack(
+  drums(s("bd [~ bd] ~ bd, ~ cp, hh*4").gain(.8)),
+  melody(
+    note("<[c3,g3,e4] [a2,e3,c4] [f2,c3,a3] [g2,d3,b3]>")
+      .s("sawtooth").lpf(900)
+      .room(.5).gain(.22)
+  )
+)`,
+        hydra: `noise(4, 0.1)
+  .color(0.3, 0.9, 1)
+  .modulateRotate(osc(3, 0.05), () => 0.5 + pulse)
+  .kaleid(3)
   .out()`,
       },
     },
