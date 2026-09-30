@@ -122,7 +122,8 @@ loop(1, 0.83, 1, 0.23).add(loop(-1, 1, 0.31, 0.85))
 )`,
         hydra: `shape(4, () => 0.3 + pulse * 0.3, 0.01)
   .repeat(3, 3)
-  .rotate(() => time * 0.1 + (pointer.x - 0.5))   // the mouse turns it too
+  .rotate(() => time * 0.1 + (pointer.x - 0.5) * 3)   // mouse left/right: turn
+  .scale(() => 1.4 - pointer.y * 0.8)                  // mouse up/down: zoom
   .modulate(osc(6, 0.1), 0.2)
   .color(0.2, 0.9, 0.8)
   .out()`,
@@ -181,7 +182,8 @@ stack(
   .add(noise(5, 1))
   .color(0, 1, 3)
   .colorama(0.4)
-  .rotate(() => (pointer.x - 0.5) * 0.6)   // move the mouse left/right to turn the image
+  .rotate(() => (pointer.x - 0.5) * 3)          // mouse left/right: turn
+  .scale(() => 1.4 - pointer.y * 0.8)          // mouse up/down: zoom
   .out()`,
       },
     },
@@ -224,7 +226,8 @@ stack(
         hydra: `noise(3, 0.1, 7)
   .rotate(1, -1, -2)
   .mask(shape(20))
-  .rotate(() => (pointer.x - 0.5) * 0.6)   // move the mouse left/right to turn the image
+  .rotate(() => (pointer.x - 0.5) * 3)          // mouse left/right: turn
+  .scale(() => 1.4 - pointer.y * 0.8)          // mouse up/down: zoom
   .colorama(0.8)
   .modulateScale(o0)
   .modulateScale(o0, 1)
@@ -303,7 +306,8 @@ stack(
   .color(0.3, 0.9, 1)
   .modulateRotate(osc(3, 0.05), () => 0.5 + pulse)
   .kaleid(3)
-  .rotate(() => (pointer.x - 0.5) * 0.6)   // move the mouse left/right to turn the image
+  .rotate(() => (pointer.x - 0.5) * 3)          // mouse left/right: turn
+  .scale(() => 1.4 - pointer.y * 0.8)          // mouse up/down: zoom
   .out()`,
       },
     },

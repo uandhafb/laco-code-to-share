@@ -118,6 +118,10 @@ GitHub Pages publishes the `main` branch (folder `/ (root)`, set in **Settings â
 
 `.nojekyll` tells GitHub Pages to serve the files exactly as they are.
 
+### After changing files
+
+The links to the CSS and scripts in `index.html` end in `?v=â€¦` (for example `js/content.js?v=20260930a`). GitHub Pages lets browsers keep files for 10 minutes, so **change that version text on every update** (for example to today's date plus a letter). Then visitors get the new files straight away instead of an old saved copy.
+
 ## How it's put together
 
 | file | role |
