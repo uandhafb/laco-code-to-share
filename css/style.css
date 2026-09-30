@@ -323,6 +323,7 @@ main { position: relative; transition: opacity 0.4s; }
 .toys button { font: inherit; touch-action: none; user-select: none; -webkit-user-select: none; }
 
 .rope { fill: none; stroke: rgba(255, 255, 255, 0.35); stroke-width: 1.5; }
+.rail { stroke: rgba(255, 255, 255, 0.35); stroke-width: 1.5; stroke-dasharray: 4 5; }
 .bond { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: round; transition: stroke-width 0.1s; }
 .is-hit .bond { stroke-width: 6; filter: drop-shadow(0 0 6px var(--accent)); }
 /* The knots live on the first screen only and scroll away with it,
@@ -455,9 +456,18 @@ body.still .hero__name { animation: none; }
   .hero__name { animation: none; }
 }
 
+/* ── tablets held upright: text on top, the tags' band below it (like phones) ── */
+@media (min-width: 701px) and (max-width: 1100px) and (orientation: portrait) {
+  .hero { justify-content: flex-start; padding-top: 6rem; padding-bottom: 460px; }
+  .toys[data-mode="knots"] .loop { bottom: 1.5rem; }
+}
+
 /* ── small screens ─────────────────────────────────────────── */
 @media (max-width: 700px) {
   .loop { right: 0.5rem; left: 0.5rem; width: auto; bottom: 4.6rem; font-size: 0.9rem; }
+  /* Phones: the opening text sits on top, then a band for the tags, then the loop. */
+  .hero { justify-content: flex-start; padding-top: 4.5rem; padding-bottom: 480px; }
+  .toys[data-mode="knots"] .loop { bottom: 1.5rem; }
   .knot { width: 110px; height: 58px; margin: -29px 0 0 -55px; padding-top: 7px; }
   .knot__word { font-size: 0.95rem; }
   .knot__code { font-size: 0.68rem; }

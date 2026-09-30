@@ -27,20 +27,41 @@ ToyModes.knots = (() => {
   let ac, raf, offHit, knots, bonds, reduced, ropeLayer, bondLayer, lastPost;
   let windClock, nextGust, lastTouch, lastTs, carried;
   let loopSound, loopVisual, tieCounter;
+  let box, boxH, rail, minY = 0;   // minY: tags never rise above the rail (phones)   // the tags' area (first screen), its height, and the phone "rail" line
 
   const byId = (id) => knots.find((k) => k.id === id);
   const bonded = (a, b) => bonds.some(([x, y]) => (x === a && y === b) || (x === b && y === a));
   const isTied = (id) => bonds.some(([a, b]) => a === id || b === id);
 
+  // Desktop and tablet: tags hang from the top edge, to the right of the title.
+  // Phone and upright tablet: the opening text comes first; tags hang from a rail in their own band below
+  // the sign-up buttons, with the loop under them, so nothing covers the text.
+  // Phones, and tablets held upright, get the band below the text.
+  const inBand = () => small() || (innerHeight > innerWidth && innerWidth <= 1100);
+
   function layout() {
-    const W = innerWidth, H = innerHeight, sm = small();
-    const left = sm ? 0.18 : 0.47, right = sm ? 0.82 : 0.93;
-    const rests = sm ? [0.5, 0.62, 0.44, 0.56, 0.48] : [0.3, 0.44, 0.24, 0.52, 0.34, 0.46, 0.28];
+    const W = innerWidth, H = innerHeight, sm = inBand();
+    let top = 0, rests;
+    if (sm) {
+      box.style.height = document.querySelector(".hero").offsetHeight + "px";
+      top = document.querySelector(".hero__actions").getBoundingClientRect().bottom + scrollY + 40;
+      rests = [70, 160, 95, 185, 120];
+      rail.setAttribute("x1", 12); rail.setAttribute("x2", W - 12);
+      rail.setAttribute("y1", top); rail.setAttribute("y2", top);
+    } else {
+      box.style.height = "";
+      rests = [0.3, 0.44, 0.24, 0.52, 0.34, 0.46, 0.28].map((r) => r * H);
+    }
+    rail.style.display = sm ? "" : "none";
+    const left = sm ? 0.14 : 0.47, right = sm ? 0.86 : 0.93;
     knots.forEach((k, i) => {
       k.ax = W * (left + (right - left) * (i / Math.max(1, knots.length - 1)));
-      k.ay = 0;
-      k.rest = H * rests[i % rests.length];
+      k.ay = top;
+      k.rest = rests[i % rests.length];
     });
+    boxH = box.offsetHeight;
+    minY = sm ? top + HALF_H + 12 : HALF_H;
+    knots.forEach((k) => (k.y = Math.max(minY, k.y)));
   }
 
   function apply() {
@@ -224,7 +245,7 @@ ToyModes.knots = (() => {
       k.vx = (k.vx + k.fx) * 0.9;
       k.vy = (k.vy + k.fy) * 0.9;
       k.x = Math.max(HALF_W, Math.min(innerWidth - HALF_W, k.x + k.vx));
-      k.y = Math.max(HALF_H, Math.min(innerHeight - HALF_H, k.y + k.vy));
+      k.y = Math.max(minY, Math.min(boxH - HALF_H, k.y + k.vy));
     });
     render();
     raf = requestAnimationFrame(step);
@@ -247,8 +268,10 @@ ToyModes.knots = (() => {
       const layer = svg("svg", { class: "toys__svg", "aria-hidden": "true" });
       ropeLayer = svg("g");
       bondLayer = svg("g");
-      layer.append(ropeLayer, bondLayer);
+      rail = svg("line", { class: "rail" });
+      layer.append(rail, ropeLayer, bondLayer);
       root.append(layer);
+      box = root;
 
       loopSound = el("span");
       loopVisual = el("span");
