@@ -118,12 +118,12 @@
     <section class="tied__col tied__col--right" id="workshops" aria-labelledby="workshops-h">
       <div class="block" id="workshops-head">
         <h2 id="workshops-h">workshops 2026</h2>
-        <p><strong>4 Wednesdays · 13:30–16:30</strong><br>Each session runs 2.5 to 3 hours, with a 15-minute break:</p>
+        <p><strong>4 Wednesdays · 13:30–17:00</strong><br>Each session runs 2.5 to 3 hours, with a 15-minute break:</p>
         <ol class="session">
-          <li><b>learn together</b> — an introduction to the basics of the language</li>
-          <li><b>share / jam</b> — write your own patterns and share them with others (if you like)</li>
+          <li><b>shared learning</b> — an introduction to the basics of the language</li>
+          <li><b>shared jam</b> — write your own patterns and share them with others (if you like)</li>
           <li><b>break</b> — 15 minutes</li>
-          <li><b>live coding</b> — live coders and live coderas talk a bit about their work, then perform</li>
+          <li><b>live coding</b> — live coders and live coderas talk a bit about their work and perform</li>
         </ol>
         <p class="where">
           <strong>where:</strong> the <a href="https://library.concordia.ca/technology/visualization/" target="_blank" rel="noopener">Visualization Studio</a>,
@@ -138,16 +138,12 @@
   <section class="block" id="how" aria-labelledby="how-h">
     <h2 id="how-h">how this site works</h2>
     <div class="prose">
-      <p>The sound is <a href="https://strudel.cc" target="_blank" rel="noopener">Strudel</a>, a JavaScript port of TidalCycles. The visuals are <a href="https://hydra.ojack.xyz" target="_blank" rel="noopener">Hydra</a>, a video synth by Olivia Jack. Both run in your browser, and the code is right here in the panel for you to edit.</p>
-      <p>Wrap layers in <code>drums(…)</code> or <code>melody(…)</code> to hook them to the floating controls. In Hydra, <code>pulse</code> follows the drums and <code>pointer.x</code> / <code>pointer.y</code> follow your mouse.</p>
-      <p class="muted">Inspired by <a href="https://github.com/vigliensoni/strudel-pie" target="_blank" rel="noopener">strudel-pie</a> by Gabriel Vigliensoni.</p>
+      <p>The sound comes from <a href="https://strudel.cc" target="_blank" rel="noopener">Strudel</a>, a JavaScript port of <a href="https://tidalcycles.org" target="_blank" rel="noopener">TidalCycles</a>, and the visuals from <a href="https://hydra.ojack.xyz" target="_blank" rel="noopener">Hydra</a>, a video synth by Olivia Jack. Both run right in your browser, so there's nothing to install.</p>
+      <p>Want to play? Press <b>{ } edit the code</b> to open the code panel, change anything you like, and press <b>▶ run</b> to hear and see the result. Press <b>↺ reset</b> to go back to the original.</p>
+      <p>You can also click or drag the tags at the top of the page to connect or disconnect them, and hear how the music and visuals change.</p>
+      <p class="muted">Find more live coding at <a href="https://toplap.org" target="_blank" rel="noopener">TOPLAP</a>.</p>
     </div>
   </section>
-
-  <footer class="footer">
-    <p id="footer-links"></p>
-    <p class="muted">made with strudel + hydra · <a href="https://toplap.org" target="_blank" rel="noopener">toplap</a></p>
-  </footer>
 </main>
 
 <!-- Floating controls: the knot tags, filled in by js/toys/knots.js -->
@@ -165,7 +161,7 @@
         <button type="button" role="tab" data-lang="strudel" aria-selected="true" aria-controls="code-strudel">strudel ♪</button>
         <button type="button" role="tab" data-lang="hydra" aria-selected="false" aria-controls="code-hydra">hydra ◐</button>
       </div>
-      <span class="code__scene">scene: <span id="code-scene">intro</span></span>
+      <span class="code__scene" hidden>scene: <span id="code-scene">intro</span></span>
     </div>
     <textarea id="code-strudel" class="code__area" role="tabpanel" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Strudel code"></textarea>
     <textarea id="code-hydra" class="code__area" role="tabpanel" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Hydra code" hidden></textarea>
@@ -173,10 +169,9 @@
       <button type="button" class="btn btn--primary" data-action="run">▶ run</button>
       <button type="button" class="btn" data-action="stop">■ stop</button>
       <button type="button" class="btn" data-action="reset">↺ reset</button>
-      <label class="code__follow"><input type="checkbox" id="follow" autocomplete="off"> follow scroll</label>
+      <label class="code__follow"><input type="checkbox" id="follow" autocomplete="off" checked> follow scroll</label>
     </div>
     <p class="code__status" id="code-status" role="status" aria-live="polite"></p>
-    <p class="code__keys muted"><kbd>ctrl/⌘</kbd>+<kbd>enter</kbd> run · <kbd>ctrl</kbd>+<kbd>.</kbd> stop</p>
   </div>
 </aside>
 

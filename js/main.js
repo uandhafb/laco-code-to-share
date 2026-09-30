@@ -37,10 +37,6 @@
   });
   $("contact").href = "mailto:" + series.contact;
   $("contact").textContent = series.contact;
-  series.links.forEach((l, i) => {
-    if (i) $("footer-links").append(" · ");
-    $("footer-links").append(el("a", { href: safeUrl(l.url), textContent: l.label, target: "_blank", rel: "noopener" }));
-  });
 
   const articles = S.workshops.map((w, i) => {
     const meta = el("dl", { className: "workshop__meta" },

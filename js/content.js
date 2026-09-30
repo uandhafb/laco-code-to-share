@@ -54,27 +54,27 @@ window.SITE = {
       },
     },
     contact: "uandha.fernandesbarbosa@mail.concordia.ca",
-    links: [
-      { label: "[instagram]", url: "[https://instagram.com/...]" },
-      { label: "[mastodon]", url: "[https://...]" },
-    ],
   },
 
   // Scene that plays on the landing screen.
   intro: {
-    strudel: `// ctrl/⌘ + enter to run · ctrl + . to stop
-// euclidean rhythms + a scale
-stack(
-  drums(s("bd*4, [~ hh]*4, ~ cp").gain(.9)),
+    strudel: `stack(
+  drums(
+    s("bd*4, [~ hh]*4, <[~ cp?0.35, cp!3?0.7 ~]>")
+      .room(.5).rsize(2)
+      .gain(.35)
+      .pan(rand)
+  ),
+
   melody(
     n("0 .. 7").scale("D:dorian")
       .s("triangle").fast(2)
       .degradeBy(.3)
-      .delay(.3).gain(.4)
+      .delay(.3)
+      .gain(.4)
   )
 )`,
-    hydra: `// laço: two loops tied together
-const loop = (side, r, g, b) =>
+    hydra: `const loop = (side, r, g, b) =>
   shape(99, 0.34, 0.02)
     .diff(shape(99, 0.3, 0.02))
     .scrollX(() => side * (0.1 + Math.sin(time * 0.4) * 0.07))
@@ -92,7 +92,7 @@ loop(1, 0.83, 1, 0.23).add(loop(-1, 1, 0.31, 0.85))
     {
       number: "01",
       title: "[WORKSHOP 01 — TBA]",
-      date: "Wednesday, November 4 · 13:30–16:30",
+      date: "Wednesday, November 4 · 13:30–17:00",
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library",
       facilitator: "",   // TODO: add the facilitator's name (empty = hidden)
       level: "all levels",
@@ -101,14 +101,23 @@ loop(1, 0.83, 1, 0.23).add(loop(-1, 1, 0.31, 0.85))
         "We're preparing the program for each workshop. It will be announced soon!",
       ],
       scene: {
-        strudel: `// a minor groove + a filter sweep
-stack(
-  drums(s("bd ~ [~ bd] ~, ~ sd, hh*8").gain(.8)),
+        strudel: `stack(
+  drums(
+    s("bossdr220_ht(3,8,<2 0 1 0 0>)")
+      .lpf(200)
+      .gain(0.45)
+      .pan(rand)
+  ),
+
   melody(
-    n("<0 2 4 [6 4]>*2").scale("C4:minor")
-      .s("sawtooth")
-      .lpf(sine.range(400, 2000).slow(8))
-      .room(.4).gain(.3)
+    n(run("<4 16/8>"))
+      .chord("<C^7, Db^7 <Fm^7 Dm7>>")
+      .voicing()
+      .add(note("<1 2>/4"))
+      .dec(.1)
+      .pan(sine.slow(10))
+      .gain(0.35)
+      //.fast(2)
   )
 )`,
         hydra: `shape(4, () => 0.3 + pulse * 0.3, 0.01)
@@ -122,7 +131,7 @@ stack(
     {
       number: "02",
       title: "[WORKSHOP 02 — TBA]",
-      date: "Wednesday, November 11 · 13:30–16:30",
+      date: "Wednesday, November 11 · 13:30–17:00",
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library",
       facilitator: "",   // TODO: add the facilitator's name (empty = hidden)
       level: "all levels",
@@ -131,26 +140,54 @@ stack(
         "We're preparing the program for each workshop. It will be announced soon!",
       ],
       scene: {
-        strudel: `// chords + a slower groove
+        strudel: `setcpm(120/4)
+
 stack(
-  drums(s("808bd:3 ~ ~ 808bd:3, ~ 808sd:1").room(.2)),
   melody(
-    note("<[c4,e4,g4] [a3,c4,e4] [f3,a3,c4] [g3,b3,d4]>")
-      .s("square").lpf(1200)
-      .gain(.2).slow(2)
+    stack(
+      s("[rim:1(3,8,<0 0 0 1>)]*2")
+        .lpq("<0 10 20 30>")
+        .delay(0.25)
+        .gain(0.3)
+        .pan(rand),
+
+      s("perc:2")
+        .slice("[1. 1. 0.8 1]*2", "[.3 0.15 .1 0.18]*1")
+        .clip(0.7)
+        .degradeBy(0.5)
+        .slow(0.75)
+        .gain(0.4)
+        .pan(rand)
+    ).every(9, x => x.slice(8, "0 1 <2 2*2> 3 [4 0] 5 6 7"))
+  ),
+
+  drums(
+    stack(
+      s("bd(2,8)*2")
+        .gain(0.5)
+        .room(1.5),
+
+      s("sd(3,8)*2")
+        .mask("[0 1!3]*2")
+        .gain(0.5)
+        .room(1.5)
+    ).every(9, x => x.s("sd(3,8)*2").mask("[0 1!3]*2").delay(0.2))
+      .gain(0.3)
+      .room(2)
+      .size(0.2)
   )
 )`,
-        hydra: `voronoi(8, 0.3, 0.3)
-  .mult(osc(10, 0.1, () => pulse * 2))
-  .modulateScale(noise(2), 0.4)
-  .color(1, 0.6, 0.3)
+        hydra: `osc(10, 0, 0)
+  .add(noise(5, 1))
+  .color(0, 1, 3)
+  .colorama(0.4)
   .out()`,
       },
     },
     {
       number: "03",
       title: "[WORKSHOP 03 — TBA]",
-      date: "Wednesday, November 25 · 13:30–16:30",
+      date: "Wednesday, November 25 · 13:30–17:00",
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library",
       facilitator: "",   // TODO: add the facilitator's name (empty = hidden)
       level: "all levels",
@@ -159,30 +196,45 @@ stack(
         "We're preparing the program for each workshop. It will be announced soon!",
       ],
       scene: {
-        strudel: `// polyrhythm + samples played backwards on one side
-stack(
-  drums(s("bd(5,8), hh*16?, ~ sd").speed(perlin.range(.9, 1.1))),
+        strudel: `stack(
+  drums(
+    stack(
+      s("bd").bank("korgkr55").beat("0,7?,11?0.2", 16),
+      s("sd").bank("UnivoxMicroRhythmer12"),
+      s("hh:4").jux(press).pan("<.5 1 .5 0>")
+    ).gain(0.7)
+  ),
+
   melody(
-    s("arpy*8").n("<0 3 5 7>")
-      .speed("<1 1.5 2>")
-      .jux(rev).room(.3).gain(.5)
+    stack(
+      note("d1!3")
+        .s("sine")
+        .penv(27)
+        .distort("8:.4")
+        .gain(0.007),
+
+      note("<c#*8 f?0.2 d#*16? <[f2?0.2 a#]>/5>/2")
+        .s("supersaw")
+        .room(2)
+        .gain(0.25)
+    )
   )
 )`,
-        hydra: `src(o0)
-  .scale(1.01)
-  .rotate(0.01)
-  .blend(
-    osc(30, 0.1, 1).kaleid(6)
-      .mask(shape(6, () => 0.2 + pulse * 0.4)),
-    0.3
-  )
-  .out()`,
+        hydra: `noise(3, 0.1, 7)
+  .rotate(1, -1, -2)
+  .mask(shape(20))
+  .colorama(0.8)
+  .modulateScale(o0)
+  .modulateScale(o0, 1)
+  .blend(o0)
+  .blend(o0)
+  .out(o0)`,
       },
     },
     {
       number: "04",
       title: "[WORKSHOP 04 — TBA]",
-      date: "Wednesday, December 9 · 13:30–16:30",
+      date: "Wednesday, December 9 · 13:30–17:00",
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library",
       facilitator: "",   // TODO: add the facilitator's name (empty = hidden)
       level: "all levels",
@@ -191,13 +243,58 @@ stack(
         "We're preparing the program for each workshop. It will be announced soon!",
       ],
       scene: {
-        strudel: `// a slow chord loop over a steady beat
-stack(
-  drums(s("bd [~ bd] ~ bd, ~ cp, hh*4").gain(.8)),
+        strudel: `stack(
+  drums(
+    stack(
+      s("glitch")
+        .n("0 4 2 7")
+        .jux(rev)
+        .hpf(2200)
+        .bpf(sine.slow(12).range(1200, 7200))
+        .bpq(sine.slow(9).range(0.25, 0.98))
+        .delay(0.08).decay(0.85)
+        .speed("<3.95 4 4.03 4.01>")
+        .gain(sine.fast(10).range(0.15, 0.55))
+        .pan(sine.slow(5)),
+
+      s("noise")
+        .segment("<8 16 32 16>")
+        .gain(sine.slow(6).range(0.0, 0.9))
+        .bpf(sine.slow(10).range(120, 9000))
+        .bpq(sine.slow(7).range(0.12, 0.97))
+        .pan(saw.slow(3))
+        .room(2.8).sz(0.9),
+
+      s("noise")
+        .segment("<16 32>")
+        .gain(sine.slow(8).range(0.02, 0.22))
+        .bpf("<250 500 1000 2000 3200 5200 7800>")
+        .bpq(0.985)
+        .pan(sine.slow(9))
+        .room(4.2).sz(0.95)
+    )
+  ),
+
   melody(
-    note("<[c3,g3,e4] [a2,e3,c4] [f2,c3,a3] [g2,d3,b3]>")
-      .s("sawtooth").lpf(900)
-      .room(.5).gain(.22)
+    stack(
+      note("<c2 [~ eb5] ~ [g6 ~ a1]>")
+        .s("piano")
+        .ply("<1 2 1 4>")
+        .lpf(sine.slow(16).range(500, 1900))
+        .hpf(sine.slow(20).range(40, 240))
+        .room(2.1).sz(3)
+        .gain(0.5)
+        .pan(sine.slow(1.7).range(-0.4, 0.4)),
+
+      s("sine")
+        .freq(saw.slow(18).range(40, 6200))
+        .crush(sine.slow(2.2).range(1, 10))
+        .gain(0.12)
+        .bpf(sine.slow(14).range(300, 8000))
+        .bpq(0.96)
+        .pan(sine.slow(0.7))
+        .room(6).sz(0.92)
+    )
   )
 )`,
         hydra: `noise(4, 0.1)

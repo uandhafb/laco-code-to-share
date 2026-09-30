@@ -47,7 +47,7 @@
       return select;
     });
   });
-  // "1. Wednesday, November 11 · 13:30–16:30; 2. …" in the order the person ranked them
+  // "1. Wednesday, November 11 · 13:30–17:00; 2. …" in the order the person ranked them
   const rankText = (key) => ranks[key]
     .map((s, i) => ({ n: Number(s.value), date: workshops[i].date }))
     .filter((r) => r.n)

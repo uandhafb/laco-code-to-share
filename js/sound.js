@@ -38,7 +38,17 @@ window.Sound = (() => {
 
   let repl = null;
   const ready = initStrudel({
-    prebake: () => strudel.samples("github:tidalcycles/dirt-samples"),
+    // The basic Tidal sample pack, classic drum machines (e.g. "bossdr220_ht"), a piano and rim shots.
+    // Only the lists load here; each sound is downloaded the first time it plays.
+    prebake: () => Promise.all([
+      strudel.samples("github:tidalcycles/dirt-samples"),
+      strudel.samples("https://raw.githubusercontent.com/felixroos/dough-samples/main/tidal-drum-machines.json"),
+      strudel.samples("https://raw.githubusercontent.com/felixroos/dough-samples/main/piano.json"),
+      // Only the rim shots from the uzu drum kit, so the other scenes' bd/sd/hh don't change.
+      fetch("https://raw.githubusercontent.com/tidalcycles/uzu-drumkit/main/strudel.json")
+        .then((r) => r.json())
+        .then((kit) => strudel.samples({ _base: kit._base, rim: kit.rim })),
+    ]),
     onToggle: (started) => {
       state.playing = started;
       emit("change", state);
