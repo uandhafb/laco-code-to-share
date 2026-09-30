@@ -19,7 +19,7 @@
   const workshopBoxes = workshops.map((w, i) => {
     const box = el("input", { type: "checkbox", name: "workshop", value: String(i) });
     list.append(el("label", { className: "check" }, box, " ",
-      el("b", { textContent: `workshop ${w.number}` }), " ",
+      el("b", { textContent: `meetup ${w.number}` }), " ",
       el("span", { className: "check__hint", textContent: w.date })));
     return box;
   });
@@ -95,7 +95,7 @@
     };
   }
   const google = connection();
-  const workshopLabel = (i) => google.workshopLabels[i] || `Workshop ${workshops[i].number}`;
+  const workshopLabel = (i) => google.workshopLabels[i] || `Meetup ${workshops[i].number}`;
 
   // ── show the follow-up question for each ticked role ────────
   const followUps = [...form.querySelectorAll("[data-show-if]")];
@@ -131,7 +131,7 @@
     check("f-email", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v("email")), "please write a valid email, like you@example.com");
     const roles = chosen();
     check("f-roles", roles.length > 0, "please choose at least one");
-    if (roles.includes("attendee")) check("f-workshops", chosenWorkshops().length > 0, "please choose at least one workshop (or all of them)");
+    if (roles.includes("attendee")) check("f-workshops", chosenWorkshops().length > 0, "please choose at least one meetup (or all of them)");
     if (roles.includes("performer")) {
       check("f-performance", v("performance").length > 0, "tell us a little about what you'd perform");
       const r = checkRank("performance");
@@ -180,7 +180,7 @@
     roles.forEach((r) => data.append(google.roles, google.roleLabels[r]));
     if (google.workshops) picked.forEach((w) => data.append(google.workshops, w));
     // A Google Form without the workshops question still gets the choice, inside the last box.
-    else if (picked.length) message = `Workshops: ${picked.join(", ")}` + (message ? `\n\n${message}` : "");
+    else if (picked.length) message = `Meetups: ${picked.join(", ")}` + (message ? `\n\n${message}` : "");
     // The date ranking goes in the same answer, on its own line.
     const withRank = (key) => `${form.elements[key].value.trim()}\n\nPreferred dates: ${rankText(key)}`;
     data.append(google.performance, roles.includes("performer") ? withRank("performance") : "");

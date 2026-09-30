@@ -58,7 +58,7 @@
   let current = null;
 
   const sceneFor = (i) => (i === "intro" ? S.intro : S.workshops[i].scene);
-  const nameFor = (i) => (i === "intro" ? "intro" : `workshop ${S.workshops[i].number}`);
+  const nameFor = (i) => (i === "intro" ? "intro" : `meetup ${S.workshops[i].number}`);
 
   function loadScene(i, { sound }) {
     current = i;

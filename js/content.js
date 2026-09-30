@@ -17,7 +17,7 @@ window.SITE = {
   series: {
     title: "LAÇO",
     subtitle: "code to share",
-    kicker: "a series of live coding workshops",
+    kicker: "a series of live coding meetups",
     // The square brackets here are part of the design, not a placeholder.
     tagline: "[Free and welcoming to all levels. Share and experience art made with code]",
     dates: "2026.2027",
@@ -30,7 +30,7 @@ window.SITE = {
     },
     // Paragraphs of "about". Text between **double stars** is shown in bold.
     about: [
-      "**LAÇO: code to share** is a series of free workshops that brings people together to build connections through live coding — the practice of creating music and visuals with the code on screen for everyone to see.",
+      "**LAÇO: code to share** is a series of free meetups that bring people together to build connections through live coding — the practice of creating music and visuals with the code on screen for everyone to see.",
       "All levels are welcome, no experience needed. Come to learn, to share, or just to hang out!",
     ],
     bring: [
@@ -91,14 +91,14 @@ loop(1, 0.83, 1, 0.23).add(loop(-1, 1, 0.31, 0.85))
   workshops: [
     {
       number: "01",
-      title: "[WORKSHOP 01 — TBA]",
+      title: "[MEETUP 01 — TBA]",
       date: "Wednesday, November 4 · 13:30–17:00",
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library",
       facilitator: "",   // TODO: add the facilitator's name (empty = hidden)
       level: "all levels",
       description: [
         // TODO: replace with what participants will learn and make, and a line about the facilitator.
-        "We're preparing the program for each workshop. It will be announced soon!",
+        "We're preparing the program for each meetup. It will be announced soon!",
       ],
       scene: {
         strudel: `stack(
@@ -131,14 +131,14 @@ loop(1, 0.83, 1, 0.23).add(loop(-1, 1, 0.31, 0.85))
     },
     {
       number: "02",
-      title: "[WORKSHOP 02 — TBA]",
+      title: "[MEETUP 02 — TBA]",
       date: "Wednesday, November 11 · 13:30–17:00",
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library",
       facilitator: "",   // TODO: add the facilitator's name (empty = hidden)
       level: "all levels",
       description: [
         // TODO: replace with what participants will learn and make, and a line about the facilitator.
-        "We're preparing the program for each workshop. It will be announced soon!",
+        "We're preparing the program for each meetup. It will be announced soon!",
       ],
       scene: {
         strudel: `setcpm(120/4)
@@ -189,14 +189,14 @@ stack(
     },
     {
       number: "03",
-      title: "[WORKSHOP 03 — TBA]",
+      title: "[MEETUP 03 — TBA]",
       date: "Wednesday, November 25 · 13:30–17:00",
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library",
       facilitator: "",   // TODO: add the facilitator's name (empty = hidden)
       level: "all levels",
       description: [
         // TODO: replace with what participants will learn and make, and a line about the facilitator.
-        "We're preparing the program for each workshop. It will be announced soon!",
+        "We're preparing the program for each meetup. It will be announced soon!",
       ],
       scene: {
         strudel: `stack(
@@ -238,14 +238,14 @@ stack(
     },
     {
       number: "04",
-      title: "[WORKSHOP 04 — TBA]",
+      title: "[MEETUP 04 — TBA]",
       date: "Wednesday, December 9 · 13:30–17:00",
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library",
       facilitator: "",   // TODO: add the facilitator's name (empty = hidden)
       level: "all levels",
       description: [
         // TODO: replace with what participants will learn and make, and a line about the facilitator.
-        "We're preparing the program for each workshop. It will be announced soon!",
+        "We're preparing the program for each meetup. It will be announced soon!",
       ],
       scene: {
         strudel: `stack(

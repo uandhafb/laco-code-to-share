@@ -5,21 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Also update these three lines when you replace the placeholders in js/content.js -->
 <title>LAÇO: code to share</title>
-<meta name="description" content="LAÇO: a series of live coding workshops (2026.2027) at the Visualization Studio, Webster Library, Concordia University. Free and welcoming to all levels. Share and experience art made with code.">
+<meta name="description" content="LAÇO: a series of live coding meetups (2026.2027) at the Visualization Studio, Webster Library, Concordia University. Free and welcoming to all levels. Share and experience art made with code.">
 <meta property="og:title" content="LAÇO: code to share">
-<meta property="og:description" content="Free and welcoming to all levels. Share and experience art made with code. Live coding workshops at the Visualization Studio, Webster Library, Concordia University (2026.2027).">
+<meta property="og:description" content="Free and welcoming to all levels. Share and experience art made with code. Live coding meetups at the Visualization Studio, Webster Library, Concordia University (2026.2027).">
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='black'/><text x='2' y='13' font-family='monospace' font-size='13' fill='%23d4ff3a'>&gt;</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;0,800;1,400&display=swap">
-<link rel="stylesheet" href="css/style.css?v=20260930b">
+<link rel="stylesheet" href="css/style.css?v=20260930c">
 </head>
 <body>
 <a class="skip" href="#main">skip to content</a>
 
 <!-- Live visuals: full-bleed Hydra canvas, isolated in its own document -->
-<iframe id="hydra-frame" src="hydra.html?v=20260930b" title="Live Hydra visuals" aria-hidden="true" tabindex="-1"></iframe>
+<iframe id="hydra-frame" src="hydra.html?v=20260930c" title="Live Hydra visuals" aria-hidden="true" tabindex="-1"></iframe>
 <div class="dim" aria-hidden="true"></div>
 
 
@@ -31,11 +31,11 @@
     <p class="hero__meta"><span id="dates"></span> <span aria-hidden="true">·</span> <span id="place"></span></p>
     <div class="hero__actions">
       <a class="btn btn--primary" id="hero-signup" href="#signup">sign up ↓</a>
-      <a class="btn" href="#workshops">see the workshops →</a>
+      <a class="btn" href="#workshops">see the meetups →</a>
     </div>
   </header>
 
-  <!-- About, sign up and the workshops hang together like the knots: js/tied.js draws the ropes -->
+  <!-- About, sign up and the meetups hang together like the knots: js/tied.js draws the ropes -->
   <div class="tied" id="tied">
     <svg class="tied__ropes" aria-hidden="true"></svg>
 
@@ -72,7 +72,7 @@
             <p class="field__error" id="f-roles-error"></p>
           </fieldset>
           <fieldset class="field" id="f-workshops" data-show-if="attendee" hidden>
-            <legend>which workshops would you like to join?</legend>
+            <legend>which meetups would you like to join?</legend>
             <div id="f-workshop-list"></div>
             <label class="check check--all"><input type="checkbox" id="f-all"> <b>all of them</b></label>
             <p class="field__error" id="f-workshops-error"></p>
@@ -90,7 +90,7 @@
           <div class="field" data-show-if="presenter" hidden>
             <label for="f-presentation">tell us about your presentation</label>
             <textarea id="f-presentation" name="presentation" rows="4"
-              placeholder="which language(s) (e.g. Hydra, SuperCollider, TidalCycles, Sonic Pi, Strudel, or other) and any prerequisites for the public (e.g. installation time)"></textarea>
+              placeholder="which language(s) (e.g. Hydra, SuperCollider, TidalCycles, Sonic Pi, Strudel, or other) and any prerequisites for participants (e.g. installation time)"></textarea>
             <p class="field__error" id="f-presentation-error"></p>
             <fieldset class="rank" id="f-rank-presentation" data-for="presentation">
               <legend>rank your preferred dates to present <span class="muted">(1 = first choice)</span></legend>
@@ -100,7 +100,7 @@
           <div class="field">
             <label for="f-message">anything else? <span class="muted">(optional)</span></label>
             <textarea id="f-message" name="message" rows="3"
-              placeholder="anything you'd like to ask or tell us, including anything that would make the workshops easier or more comfortable for you"></textarea>
+              placeholder="anything you'd like to ask or tell us, including anything that would make the meetups easier or more comfortable for you"></textarea>
           </div>
           <!-- left empty by people; bots tend to fill it -->
           <div class="form__trap" aria-hidden="true">
@@ -117,7 +117,7 @@
 
     <section class="tied__col tied__col--right" id="workshops" aria-labelledby="workshops-h">
       <div class="block" id="workshops-head">
-        <h2 id="workshops-h">workshops 2026</h2>
+        <h2 id="workshops-h">meetups 2026</h2>
         <p><strong>4 Wednesdays · 13:30–17:00</strong><br>Each session runs 2.5 to 3 hours, with a 15-minute break:</p>
         <ol class="session">
           <li><b>shared learning</b> — an introduction to the basics of the language</li>
@@ -178,14 +178,14 @@
 <script src="https://unpkg.com/@strudel/web@1.3.0/dist/index.js"
         integrity="sha384-Be7toEZy01lox8utUZEOBM2nCd1jVX8R9A3YwfZ7j5kBTv/MKy+LlCbTWqE97W8x"
         crossorigin="anonymous"></script>
-<script src="js/content.js?v=20260930b"></script>
-<script src="js/visuals.js?v=20260930b"></script>
-<script src="js/sound.js?v=20260930b"></script>
-<script src="js/editor.js?v=20260930b"></script>
-<script src="js/toys.js?v=20260930b"></script>
-<script src="js/toys/knots.js?v=20260930b"></script>
-<script src="js/main.js?v=20260930b"></script>
-<script src="js/signup.js?v=20260930b"></script>
-<script src="js/tied.js?v=20260930b"></script>
+<script src="js/content.js?v=20260930c"></script>
+<script src="js/visuals.js?v=20260930c"></script>
+<script src="js/sound.js?v=20260930c"></script>
+<script src="js/editor.js?v=20260930c"></script>
+<script src="js/toys.js?v=20260930c"></script>
+<script src="js/toys/knots.js?v=20260930c"></script>
+<script src="js/main.js?v=20260930c"></script>
+<script src="js/signup.js?v=20260930c"></script>
+<script src="js/tied.js?v=20260930c"></script>
 </body>
 </html>

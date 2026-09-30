@@ -1,6 +1,6 @@
 # LAÇO: code to share
 
-The website for **LAÇO**, a series of free live coding workshops for all levels at the Visualization Studio, Webster Library, Concordia University (2026.2027).
+The website for **LAÇO**, a series of free live coding meetups for all levels at the Visualization Studio, Webster Library, Concordia University (2026.2027).
 
 **Live site: https://uandhafb.github.io/laco-code-to-share/**
 
@@ -92,7 +92,7 @@ The form's texts (intro, the "we're reviewing registrations" note, role descript
    | 1 | Name | Short answer | yes |
    | 2 | Email | Short answer | yes |
    | 3 | I'd like to take part as | Checkboxes, with the options **Attendee**, **Performer**, **Presenter** (in that order) | yes |
-   | 4 | Which workshops would you like to join? | Checkboxes, one option per workshop: **Workshop 01**, **Workshop 02**, **Workshop 03**, **Workshop 04** (same order as the site) | no |
+   | 4 | Which meetups would you like to join? | Checkboxes, one option per workshop: **Meetup 01**, **Meetup 02**, **Meetup 03**, **Meetup 04** (same order as the site) | no |
    | 5 | About your performance | Paragraph | no |
    | 6 | About your presentation | Paragraph | no |
    | 7 | Anything else? (questions, ideas, access needs) | Paragraph | no |
