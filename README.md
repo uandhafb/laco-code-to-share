@@ -2,7 +2,7 @@
 
 The website for **LAÇO**, a series of free live coding meetups for all levels at the Visualization Studio, Webster Library, Concordia University (2026.2027).
 
-**Live site: https://uandhafb.github.io/laco-code-to-share/**
+**Live site: https://laco.codetoshare.org**
 
 The whole page is a live instrument. The background is [Hydra](https://hydra.ojack.xyz) visuals, the sound is [Strudel](https://strudel.cc), and visitors can play with both, by tying knots or by editing the code directly.
 
@@ -112,7 +112,9 @@ Google's notification email only says that a new response arrived; the answers t
 
 ## The live site
 
-**https://uandhafb.github.io/laco-code-to-share/**
+**https://laco.codetoshare.org** (the old address, https://uandhafb.github.io/laco-code-to-share/, redirects there)
+
+The domain's DNS is managed on DreamHost (a CNAME record pointing `laco.codetoshare.org` to `uandhafb.github.io`), and the `CNAME` file in this repository tells GitHub Pages to use it. Don't delete that file.
 
 GitHub Pages publishes the `main` branch (folder `/ (root)`, set in **Settings → Pages**). Every push to `main` updates the live site in about a minute.
 
