@@ -43,11 +43,19 @@
       ...[["when", w.date], ["where", w.place], ["with", w.facilitator], ["level", w.level]]
         .filter(([, v]) => v)
         .map(([k, v]) => el("div", {}, el("dt", { textContent: k }), el("dd", { textContent: v }))));
+    const schedule = w.schedule && el("div", { className: "workshop__schedule" },
+      el("h4", { textContent: "approximate schedule" }),
+      el("ol", {}, ...w.schedule.map(([time, what]) =>
+        el("li", {}, el("time", { textContent: time }), " ", el("span", { textContent: what })))));
+    const presenter = w.presenter && el("div", { className: "workshop__presenter" },
+      el("h4", { textContent: w.presenter.label }),
+      el("p", {}, el("strong", { textContent: w.presenter.name }), " — ", w.presenter.bio));
     const article = el("article", { className: "workshop" },
       el("span", { className: "workshop__num", textContent: w.number, ariaHidden: "true" }),
       el("h3", { className: "workshop__title", textContent: w.title }),
       meta,
-      ...w.description.map((p) => el("p", { textContent: p })));
+      ...w.description.map((p) => el("p", {}, rich(p))),
+      ...[schedule, presenter].filter(Boolean));
     article.dataset.scene = i;
     $("workshop-list").append(el("li", {}, article));
     return article;

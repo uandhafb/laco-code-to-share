@@ -91,15 +91,33 @@ loop(1, 0.83, 1, 0.23).add(loop(-1, 1, 0.31, 0.85))
   workshops: [
     {
       number: "01",
-      title: "[MEETUP 01 — TBA]",
-      date: "Wednesday, November 4 · 13:30–17:00",
-      place: "Visualization Studio (LB-314, 3rd floor), Webster Library",
-      facilitator: "",   // TODO: add the facilitator's name (empty = hidden)
+      title: "LAÇO #1: Sound and Visuals in the Browser",
+      date: "Wednesday, November 4 · 13:30–16:30",
+      place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
+      facilitator: "",   // shown in "presenter" below instead
       level: "all levels",
+      // Text between **double stars** is shown in bold.
       description: [
-        // TODO: replace with what participants will learn and make, and a line about the facilitator.
-        "We're preparing the program for each meetup. It will be announced soon!",
+        "In this first meetup, we'll make music and visuals with code using two web-based languages (no installation required!). **Strudel** is a live coding environment for music, and **Hydra** is a live coding video synth.",
+        "Bring your laptop and headphones or earbuds — both tools also run on tablets and even phones :] None of the activities are mandatory, and you're more than welcome to just come and hang out with us!",
       ],
+      // Optional: an approximate schedule, as [time, what].
+      schedule: [
+        ["13:30", "Welcome"],
+        ["13:40", "Strudel basics, hands-on"],
+        ["14:10", "Break"],
+        ["14:20", "Hydra basics, hands-on"],
+        ["14:50", "Break"],
+        ["15:00", "Code share: try something and show it to the group"],
+        ["15:20", "Live coding performance"],
+        ["15:40", "Wrap-up"],
+      ],
+      // Optional: who presents and performs.
+      presenter: {
+        label: "Your presenter and performer",
+        name: "Uandha Fernandes Barbosa",
+        bio: "Originally from Brazil, Uandha is a researcher and new media artist doing her MA in the INDI program at Concordia University. Her work asks: what happens when an algorithm becomes something we can feel? She approaches this question through live coding, embodied human-computer interaction and machine learning, exploring how we perceive and embody code-driven experiences.",
+      },
       scene: {
         strudel: `stack(
   drums(
