@@ -111,6 +111,7 @@ loop(1, 0.83, 1, 0.23).add(loop(-1, 1, 0.31, 0.85))
         ["15:00", "Code share: try something and show it to the group"],
         ["15:20", "Live coding performance"],
         ["15:40", "Wrap-up"],
+        ["16:00", "End"],
       ],
       // Optional: who presents and performs.
       presenter: {
@@ -149,15 +150,34 @@ loop(1, 0.83, 1, 0.23).add(loop(-1, 1, 0.31, 0.85))
     },
     {
       number: "02",
-      title: "[MEETUP 02 — TBA]",
-      date: "Wednesday, November 11 · 13:30–17:00",
-      place: "Visualization Studio (LB-314, 3rd floor), Webster Library",
-      facilitator: "",   // TODO: add the facilitator's name (empty = hidden)
+      title: "LAÇO #2: Sound and Visuals in the Browser",
+      date: "Wednesday, November 11 · 13:30–16:00",
+      place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
+      facilitator: "",   // shown in "presenter" below instead
       level: "all levels",
+      // Text between **double stars** is shown in bold.
       description: [
-        // TODO: replace with what participants will learn and make, and a line about the facilitator.
-        "We're preparing the program for each meetup. It will be announced soon!",
+        "In this second meetup, we'll keep making music and visuals with the same two web-based languages (no installation required!). In **Strudel**, we'll start with the basics and then play with notes and scales to build melodies. In **Hydra**, we'll explore colour, blending and modulation to make images that mix and transform. New to live coding? No problem — we'll do a quick recap at the start.",
+        "Bring your laptop and headphones or earbuds — both tools also run on tablets and even phones :] None of the activities are mandatory, and you're more than welcome to just come and hang out with us!",
       ],
+      // Optional: an approximate schedule, as [time, what].
+      schedule: [
+        ["13:30", "Welcome and quick recap"],
+        ["13:40", "Strudel basics, notes and scales, hands-on"],
+        ["14:10", "Break"],
+        ["14:20", "Hydra colour, blending and modulation, hands-on"],
+        ["14:50", "Break"],
+        ["15:00", "Code share: try something and show it to the group"],
+        ["15:20", "Live coding performance"],
+        ["15:40", "Wrap-up"],
+        ["16:00", "End"],
+      ],
+      // Optional: who presents and performs.
+      presenter: {
+        label: "Your presenter and performer",
+        name: "Uandha Fernandes Barbosa",
+        bio: "Originally from Brazil, Uandha is a researcher and new media artist doing her MA in the INDI program at Concordia University. Her work asks: what happens when an algorithm becomes something we can feel? She approaches this question through live coding, embodied human-computer interaction and machine learning, exploring how we perceive and embody code-driven experiences.",
+      },
       scene: {
         strudel: `setcpm(120/4)
 
