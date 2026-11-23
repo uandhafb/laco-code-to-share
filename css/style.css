@@ -311,6 +311,9 @@ main { position: relative; transition: opacity 0.4s; }
 .workshop__schedule time { color: var(--muted); font-variant-numeric: tabular-nums; }
 .workshop__presenter { margin-top: 0.4rem; padding: 0.8em 0.9em; border-left: 3px solid var(--accent-2); background: rgba(255, 79, 216, 0.06); }
 .workshop__presenter p { margin: 0; line-height: 1.6; }
+.workshop__presenter + .workshop__presenter { margin-top: 0.8rem; }
+.workshop__links { list-style: none; margin: 0.6rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; font-size: 0.8rem; }
+.workshop__links a::after { content: " ↗"; }
 .workshop__actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: auto; padding-top: 0.8rem; }
 .workshop__actions .btn { font-size: 0.8rem; }
 

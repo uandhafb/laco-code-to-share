@@ -227,14 +227,44 @@ stack(
     },
     {
       number: "03",
-      title: "[MEETUP 03 — TBA]",
-      date: "Wednesday, November 25 · 13:30–17:00",
-      place: "Visualization Studio (LB-314, 3rd floor), Webster Library",
-      facilitator: "",   // TODO: add the facilitator's name (empty = hidden)
+      title: "LAÇO #3: ASCII Art and Live Performance",
+      date: "Wednesday, November 25 · 13:30–16:00",
+      place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
+      facilitator: "",   // shown in "presenter" below instead
       level: "all levels",
+      // Text between **double stars** is shown in bold.
       description: [
-        // TODO: replace with what participants will learn and make, and a line about the facilitator.
-        "We're preparing the program for each meetup. It will be announced soon!",
+        "In this third meetup, we'll start with the basics of **textmode.js**: live visuals made of text characters — ASCII art — coded right in the browser (no installation required!). In the second half, guest live coder **Christophe Lengelé** will talk about his work and perform, improvising sound, image and space together.",
+        "Bring your laptop and headphones or earbuds — textmode.js also runs on tablets and even phones :] None of the activities are mandatory, and you're more than welcome to just come and hang out with us!",
+      ],
+      // Optional: an approximate schedule, as [time, what].
+      schedule: [
+        ["13:30", "Welcome"],
+        ["13:40", "textmode.js basics, hands-on"],
+        ["14:20", "Code share: try something and show it to the group"],
+        ["14:30", "Break"],
+        ["14:40", "Christophe Lengelé: talk and live coding performance"],
+        ["15:30", "Wrap-up"],
+        ["16:00", "End"],
+      ],
+      // Optional: who presents and performs (one, or a list). Links are [label, url].
+      presenter: [
+        {
+          label: "Presenter",
+          name: "Uandha Fernandes Barbosa",
+          bio: "Originally from Brazil, Uandha is a researcher and new media artist doing her MA in the INDI program at Concordia University. Her work asks: what happens when an algorithm becomes something we can feel? She approaches this question through live coding, embodied human-computer interaction and machine learning, exploring how we perceive and embody code-driven experiences.",
+          links: [["textmode.js", "https://code.textmode.art"]],
+        },
+        {
+          label: "Performer",
+          name: "Christophe Lengelé",
+          bio: "Christophe creates audiovisual and spatial performances from mostly prepared code, using free tools he has been developing since 2011: Live 4 Life and, more recently, Live 4 Bubbles, built on TidalCycles, SuperCollider and Hydra. Live 4 Bubbles, his current system, turns prepared code into an instrument played on MIDI controllers across up to eight independent tracks, so that sound, image (with his visual sequencer Fizzy Hydra) and space are improvised together. He holds a doctorate in composition and sound creation from the Université de Montréal, completed postdoctoral research on spatial improvisation at UQAM, and composes open and improvised works. After a stint in marketing, he now devotes himself entirely to open-source tools and to sharing all of his code, pursuing a utopian vision where money is not at stake and where the creative process matters as much as, if not more than, the final result.",
+          links: [
+            ["Live 4 Bubbles", "https://github.com/Xon77/Live4Bubbles"],
+            ["Fizzy Hydra", "https://github.com/Xon77/FizzyHydra"],
+            ["watch a performance", "https://www.youtube.com/watch?v=6RqjWrGC6fw"],
+          ],
+        },
       ],
       scene: {
         strudel: `stack(

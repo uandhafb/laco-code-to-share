@@ -47,15 +47,19 @@
       el("h4", { textContent: "approximate schedule" }),
       el("ol", {}, ...w.schedule.map(([time, what]) =>
         el("li", {}, el("time", { textContent: time }), " ", el("span", { textContent: what })))));
-    const presenter = w.presenter && el("div", { className: "workshop__presenter" },
-      el("h4", { textContent: w.presenter.label }),
-      el("p", {}, el("strong", { textContent: w.presenter.name }), " — ", w.presenter.bio));
+    // One presenter, or a list of them; each can have links ([label, url]).
+    const people = w.presenter ? [].concat(w.presenter) : [];
+    const presenters = people.map((who) => el("div", { className: "workshop__presenter" },
+      el("h4", { textContent: who.label }),
+      el("p", {}, el("strong", { textContent: who.name }), " — ", who.bio),
+      ...(who.links ? [el("ul", { className: "workshop__links" }, ...who.links.map(([label, url]) =>
+        el("li", {}, el("a", { href: safeUrl(url), textContent: label, target: "_blank", rel: "noopener" }))))] : [])));
     const article = el("article", { className: "workshop" },
       el("span", { className: "workshop__num", textContent: w.number, ariaHidden: "true" }),
       el("h3", { className: "workshop__title", textContent: w.title }),
       meta,
       ...w.description.map((p) => el("p", {}, rich(p))),
-      ...[schedule, presenter].filter(Boolean));
+      ...[schedule, ...presenters].filter(Boolean));
     article.dataset.scene = i;
     $("workshop-list").append(el("li", {}, article));
     return article;
