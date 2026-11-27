@@ -306,15 +306,34 @@ stack(
     },
     {
       number: "04",
-      title: "[MEETUP 04 — TBA]",
-      date: "Wednesday, December 9 · 13:30–17:00",
-      place: "Visualization Studio (LB-314, 3rd floor), Webster Library",
-      facilitator: "",   // TODO: add the facilitator's name (empty = hidden)
+      title: "LAÇO #4: More ASCII Art",
+      date: "Wednesday, December 9 · 13:30–16:00",
+      place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
+      facilitator: "",   // shown in "presenter" below instead
       level: "all levels",
+      // Text between **double stars** is shown in bold.
       description: [
-        // TODO: replace with what participants will learn and make, and a line about the facilitator.
-        "We're preparing the program for each meetup. It will be announced soon!",
+        "In this fourth meetup, we'll keep exploring **textmode.js**: live visuals made of text characters — ASCII art — coded right in the browser (no installation required!). Missed meetup #3? No problem — we'll start with a quick recap of the basics, then go further together.",
+        "Bring your laptop and headphones or earbuds — textmode.js also runs on tablets and even phones :] None of the activities are mandatory, and you're more than welcome to just come and hang out with us!",
       ],
+      // Optional: an approximate schedule, as [time, what].
+      schedule: [
+        ["13:30", "Welcome"],
+        ["13:40", "textmode.js recap and basics, hands-on"],
+        ["14:20", "Break"],
+        ["14:30", "More ASCII art with textmode.js, hands-on"],
+        ["15:00", "Code share: try something and show it to the group"],
+        ["15:20", "Live coding performance"],
+        ["15:40", "Wrap-up"],
+        ["16:00", "End"],
+      ],
+      // Optional: who presents and performs (one, or a list). Links are [label, url].
+      presenter: {
+        label: "Presenter and performer",
+        name: "Uandha Fernandes Barbosa",
+        bio: "Originally from Brazil, Uandha is a researcher and new media artist doing her MA in the INDI program at Concordia University. Her work asks: what happens when an algorithm becomes something we can feel? She approaches this question through live coding, embodied human-computer interaction and machine learning, exploring how we perceive and embody code-driven experiences.",
+        links: [["textmode.js", "https://code.textmode.art"]],
+      },
       scene: {
         strudel: `stack(
   drums(
