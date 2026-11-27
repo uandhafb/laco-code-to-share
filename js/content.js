@@ -405,7 +405,7 @@ stack(
       date: "Friday, January 29 · 15:00–18:00",
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
       level: "all levels",
-      description: [],
+      description: ["We're preparing the program for this meetup. It will be announced soon!"],
     },
     {
       number: "06",
@@ -414,7 +414,7 @@ stack(
       date: "Friday, February 26 · 15:00–18:00",
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
       level: "all levels",
-      description: [],
+      description: ["We're preparing the program for this meetup. It will be announced soon!"],
     },
     {
       number: "07",
@@ -423,7 +423,7 @@ stack(
       date: "Friday, March 26 · 15:00–18:00",
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
       level: "all levels",
-      description: [],
+      description: ["We're preparing the program for this meetup. It will be announced soon!"],
     },
     {
       number: "08",
@@ -432,7 +432,7 @@ stack(
       date: "Friday, April 23 · 15:00–18:00",
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
       level: "all levels",
-      description: [],
+      description: ["We're preparing the program for this meetup. It will be announced soon!"],
     },
   ],
 };

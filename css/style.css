@@ -321,7 +321,17 @@ main { position: relative; transition: opacity 0.4s; }
 }
 .term-toggle:hover { border-color: var(--accent); }
 .workshops[hidden] { display: none; }
-#workshop-list-2027 .workshop__meta { margin-bottom: 0; }
+.term-dates { list-style: none; margin: 0 0 1.1rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.term-dates li { padding: 0.25em 0.7em; border: 1px solid var(--accent); color: var(--accent); font-size: 0.82rem; }
+.term-code {
+  margin: 0 0 1.2rem; padding: 0.9em 1.1em;
+  font: inherit; font-size: 0.88rem; line-height: 1.6;
+  background: rgba(0, 0, 0, 0.6); border-left: 3px solid var(--accent);
+  overflow-x: auto; white-space: pre;
+}
+.term-code code { background: none; padding: 0; font-size: inherit; }
+.term-code .k { color: var(--accent-2); font-weight: 700; }
+.term-code .s { color: var(--accent); }
 .workshop__actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: auto; padding-top: 0.8rem; }
 .workshop__actions .btn { font-size: 0.8rem; }
 
