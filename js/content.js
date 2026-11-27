@@ -326,7 +326,7 @@ stack(
         ["13:40", "textmode.js basics, hands-on"],
         ["14:30", "Break"],
         ["14:40", "Code share: try something and show it to the group"],
-        ["15:00", "Live coding performance"],
+        ["15:00", "Coding performance"],
         ["16:00", "End"],
       ],
       // Optional: who presents and performs (one, or a list). Links are [label, url].
