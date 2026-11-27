@@ -93,7 +93,7 @@ loop(1, 0.83, 1, 0.23).add(loop(-1, 1, 0.31, 0.85))
       number: "01",
       day: "2026-11-04",   // the real date: decides "past" / "next" on the page and in the form
       title: "LAÇO #1: Sound and Visuals in the Browser",
-      date: "Wednesday, November 4 · 13:30–16:30",
+      date: "Wednesday, November 4 · 13:30–16:00",
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
       facilitator: "",   // shown in "presenter" below instead
       level: "all levels",
