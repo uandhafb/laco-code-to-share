@@ -403,7 +403,6 @@ stack(
     {
       number: "05",
       day: "2027-01-29",   // the real date: decides "past" / "next" on the page and in the form
-      term: "2027",   // shown in the "meetups 2027" box
       title: "[MEETUP 05 — coming soon]",
       date: "Friday, January 29 · 15:00–18:00",
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
@@ -413,7 +412,6 @@ stack(
     {
       number: "06",
       day: "2027-02-26",   // the real date: decides "past" / "next" on the page and in the form
-      term: "2027",   // shown in the "meetups 2027" box
       title: "[MEETUP 06 — coming soon]",
       date: "Friday, February 26 · 15:00–18:00",
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
@@ -423,7 +421,6 @@ stack(
     {
       number: "07",
       day: "2027-03-26",   // the real date: decides "past" / "next" on the page and in the form
-      term: "2027",   // shown in the "meetups 2027" box
       title: "[MEETUP 07 — coming soon]",
       date: "Friday, March 26 · 15:00–18:00",
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
@@ -433,7 +430,6 @@ stack(
     {
       number: "08",
       day: "2027-04-23",   // the real date: decides "past" / "next" on the page and in the form
-      term: "2027",   // shown in the "meetups 2027" box
       title: "[MEETUP 08 — coming soon]",
       date: "Friday, April 23 · 15:00–18:00",
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",

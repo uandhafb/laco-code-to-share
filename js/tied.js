@@ -18,7 +18,7 @@
   function build() {
     const about = root.querySelector("#about");
     const signup = root.querySelector("#signup");
-    // The meetups column: the 2026 box, its cards, the 2027 box, its cards (hidden ones skipped).
+    // Connect the two-year overview and visible meetup cards in their displayed order.
     const right = [...root.querySelectorAll("#workshops .block, #workshops .workshop")].filter((e) => e.offsetParent !== null);
     const head = right[0];
     columns = getComputedStyle(root).gridTemplateColumns.split(" ").length;

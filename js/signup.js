@@ -114,6 +114,19 @@
   }));
   updateFollowUps();
 
+  // "sign up for #4 →" on the opening screen ticks that meetup in the form.
+  const heroSignup = document.getElementById("hero-signup");
+  heroSignup.addEventListener("click", () => {
+    const index = workshops.findIndex((w) => w.number === heroSignup.dataset.workshop);
+    if (index < 0 || !form.contains(workshopBoxes[index])) return;
+    roleBoxes.find((box) => box.value === "attendee").checked = true;
+    workshopBoxes[index].checked = true;
+    updateFollowUps();
+    allBox.checked = workshopBoxes.every((box) => box.checked);
+    setError("f-roles", "");
+    setError("f-workshops", "");
+  });
+
   // ── validation ──────────────────────────────────────────────
   function setError(id, message) {
     const el = document.getElementById(id);
