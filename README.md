@@ -92,7 +92,7 @@ The form's texts (intro, the "we're reviewing registrations" note, role descript
    | 1 | Name | Short answer | yes |
    | 2 | Email | Short answer | yes |
    | 3 | I'd like to take part as | Checkboxes, with the options **Attendee**, **Performer**, **Presenter** (in that order) | yes |
-   | 4 | Which meetups would you like to join? | Checkboxes, one option per open meetup, in the same order as `series.signup.meetups` in content.js (now **Meetup 04** … **Meetup 08**) | no |
+   | 4 | Which meetups would you like to join? | Checkboxes, one option per upcoming meetup, in date order (past meetups drop out of the site's form by themselves, using each meetup's `day`) | no |
    | 5 | About your performance | Paragraph | no |
    | 6 | About your presentation | Paragraph | no |
    | 7 | Anything else? (questions, ideas, access needs) | Paragraph | no |

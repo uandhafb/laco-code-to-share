@@ -45,8 +45,6 @@ window.SITE = {
         performer: "perform live code (music, visuals, web choreography)",
         presenter: "present first steps and tips for your language",
       },
-      // Which meetups people can sign up for (by number). Remove past ones as they happen.
-      meetups: ["04", "05", "06", "07", "08"],
       thanks: "Thanks, you're in the loop! If you signed up to perform or present, we'll email you to confirm the details.",
 
       // Connects the form to your Google Form. See "Registration form" in README.md.
@@ -93,6 +91,7 @@ loop(1, 0.83, 1, 0.23).add(loop(-1, 1, 0.31, 0.85))
   workshops: [
     {
       number: "01",
+      day: "2026-11-04",   // the real date: decides "past" / "next" on the page and in the form
       title: "LAÇO #1: Sound and Visuals in the Browser",
       date: "Wednesday, November 4 · 13:30–16:30",
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
@@ -152,6 +151,7 @@ loop(1, 0.83, 1, 0.23).add(loop(-1, 1, 0.31, 0.85))
     },
     {
       number: "02",
+      day: "2026-11-11",   // the real date: decides "past" / "next" on the page and in the form
       title: "LAÇO #2: Sound and Visuals in the Browser",
       date: "Wednesday, November 11 · 13:30–16:00",
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
@@ -229,6 +229,7 @@ stack(
     },
     {
       number: "03",
+      day: "2026-11-25",   // the real date: decides "past" / "next" on the page and in the form
       title: "LAÇO #3: ASCII Art and Live Performance",
       date: "Wednesday, November 25 · 13:30–16:00",
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
@@ -308,6 +309,7 @@ stack(
     },
     {
       number: "04",
+      day: "2026-12-09",   // the real date: decides "past" / "next" on the page and in the form
       title: "LAÇO #4: ASCII Art and Live Performance",
       date: "Wednesday, December 9 · 13:30–16:00",
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
@@ -400,6 +402,7 @@ stack(
     },
     {
       number: "05",
+      day: "2027-01-29",   // the real date: decides "past" / "next" on the page and in the form
       term: "2027",   // shown in the "meetups 2027" box
       title: "[MEETUP 05 — coming soon]",
       date: "Friday, January 29 · 15:00–18:00",
@@ -409,6 +412,7 @@ stack(
     },
     {
       number: "06",
+      day: "2027-02-26",   // the real date: decides "past" / "next" on the page and in the form
       term: "2027",   // shown in the "meetups 2027" box
       title: "[MEETUP 06 — coming soon]",
       date: "Friday, February 26 · 15:00–18:00",
@@ -418,6 +422,7 @@ stack(
     },
     {
       number: "07",
+      day: "2027-03-26",   // the real date: decides "past" / "next" on the page and in the form
       term: "2027",   // shown in the "meetups 2027" box
       title: "[MEETUP 07 — coming soon]",
       date: "Friday, March 26 · 15:00–18:00",
@@ -427,6 +432,7 @@ stack(
     },
     {
       number: "08",
+      day: "2027-04-23",   // the real date: decides "past" / "next" on the page and in the form
       term: "2027",   // shown in the "meetups 2027" box
       title: "[MEETUP 08 — coming soon]",
       date: "Friday, April 23 · 15:00–18:00",

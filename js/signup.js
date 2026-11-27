@@ -2,8 +2,8 @@
 // Google Form (so they land in a Google Sheet, with email notifications) — see README.md.
 (() => {
   const cfg = window.SITE.series.signup;
-  // Only the meetups listed in signup.meetups can be chosen (past ones are left out).
-  const workshops = window.SITE.workshops.filter((w) => !cfg.meetups || cfg.meetups.includes(w.number));
+  // Past meetups can't be chosen (main.js marks them from each meetup's "day").
+  const workshops = window.SITE.workshops.filter((w) => !w.past);
   const form = document.getElementById("signup-form");
   const status = document.getElementById("signup-status");
   const submit = form.querySelector("button[type=submit]");
@@ -96,7 +96,10 @@
     };
   }
   const google = connection();
-  const workshopLabel = (i) => google.workshopLabels[i] || `Meetup ${workshops[i].number}`;
+  // The Google Form option for a meetup, found by its number ("Meetup 05"), since past
+  // meetups drop out of this list but may still be options in the Google Form.
+  const workshopLabel = (i) => `Meetup ${workshops[i].number}`;
+  const googleOption = (label) => google.workshopLabels.find((o) => o.trim().toLowerCase() === label.toLowerCase());
 
   // ── show the follow-up question for each ticked role ────────
   const followUps = [...form.querySelectorAll("[data-show-if]")];
@@ -173,15 +176,18 @@
     }
 
     const roles = chosen();
-    const picked = roles.includes("attendee") ? chosenWorkshops().map(workshopLabel) : [];
+    let picked = roles.includes("attendee") ? chosenWorkshops().map(workshopLabel) : [];
     let message = form.elements.message.value.trim();
     const data = new URLSearchParams();
     data.append(google.name, form.elements.name.value.trim());
     data.append(google.email, form.elements.email.value.trim());
     roles.forEach((r) => data.append(google.roles, google.roleLabels[r]));
-    if (google.workshops) picked.forEach((w) => data.append(google.workshops, w));
+    // Choices with a matching Google Form option go in that question; any others go in the last box.
+    const asOption = google.workshops ? picked.filter(googleOption) : [];
+    asOption.forEach((w) => data.append(google.workshops, googleOption(w)));
+    picked = picked.filter((w) => !asOption.includes(w));
     // A Google Form without the workshops question still gets the choice, inside the last box.
-    else if (picked.length) message = `Meetups: ${picked.join(", ")}` + (message ? `\n\n${message}` : "");
+    if (picked.length) message = `Meetups: ${picked.join(", ")}` + (message ? `\n\n${message}` : "");
     // The date ranking goes in the same answer, on its own line.
     const withRank = (key) => `${form.elements[key].value.trim()}\n\nPreferred dates: ${rankText(key)}`;
     data.append(google.performance, roles.includes("performer") ? withRank("performance") : "");
