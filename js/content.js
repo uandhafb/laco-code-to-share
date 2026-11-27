@@ -30,7 +30,7 @@ window.SITE = {
     },
     // Paragraphs of "about". Text between **double stars** is shown in bold.
     about: [
-      "**LAÇO: code to share** is a series of free meetups that bring people together to build connections through live coding — the practice of creating music and visuals with the code on screen for everyone to see.",
+      "**LAÇO: code to share** is a series of free meetups that bring people together to build connections through live coding — the practice of creating art with code in real time, with the code on screen for everyone to see.",
       "All levels are welcome, no experience needed. Come to learn, to share, or just to hang out!",
     ],
     bring: [
