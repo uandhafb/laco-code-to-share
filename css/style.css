@@ -128,7 +128,8 @@ main { position: relative; transition: opacity 0.4s; }
   background: rgba(0, 0, 0, 0.8);
   padding: 0.1em 0.4em;
 }
-.hero__subtitle::before { content: "// "; opacity: 0.6; }
+.hero__subtitle::before { content: "<"; opacity: 0.6; }
+.hero__subtitle::after { content: ">"; opacity: 0.6; }
 @keyframes jitter {
   0%, 88%, 100% { text-shadow: 3px 0 var(--accent-2), -3px 0 var(--accent); transform: none; }
   90% { text-shadow: -6px 0 var(--accent-2), 6px 0 var(--accent); transform: translateX(2px) skewX(-4deg); }
@@ -314,6 +315,13 @@ main { position: relative; transition: opacity 0.4s; }
 .workshop__presenter + .workshop__presenter { margin-top: 0.8rem; }
 .workshop__links { list-style: none; margin: 0.6rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; font-size: 0.8rem; }
 .workshop__links a::after { content: " ↗"; }
+.term-toggle {
+  font: inherit; font-size: 0.8rem; color: var(--accent); background: none;
+  border: 1px solid var(--line); padding: 0.3em 0.8em; margin: -0.6rem 0 1rem; cursor: pointer;
+}
+.term-toggle:hover { border-color: var(--accent); }
+.workshops[hidden] { display: none; }
+#workshop-list-2027 .workshop__meta { margin-bottom: 0; }
 .workshop__actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: auto; padding-top: 0.8rem; }
 .workshop__actions .btn { font-size: 0.8rem; }
 

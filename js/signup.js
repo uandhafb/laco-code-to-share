@@ -2,7 +2,8 @@
 // Google Form (so they land in a Google Sheet, with email notifications) — see README.md.
 (() => {
   const cfg = window.SITE.series.signup;
-  const workshops = window.SITE.workshops;
+  // Only the meetups listed in signup.meetups can be chosen (past ones are left out).
+  const workshops = window.SITE.workshops.filter((w) => !cfg.meetups || cfg.meetups.includes(w.number));
   const form = document.getElementById("signup-form");
   const status = document.getElementById("signup-status");
   const submit = form.querySelector("button[type=submit]");

@@ -60,9 +60,21 @@
       meta,
       ...w.description.map((p) => el("p", {}, rich(p))),
       ...[schedule, ...presenters].filter(Boolean));
-    article.dataset.scene = i;
-    $("workshop-list").append(el("li", {}, article));
+    if (w.scene) article.dataset.scene = i;
+    $(w.term ? `workshop-list-${w.term}` : "workshop-list").append(el("li", {}, article));
     return article;
+  });
+
+  // "hide / show the meetups" button on the 2026 box
+  document.querySelectorAll(".term-toggle").forEach((btn) => {
+    const list = $(btn.getAttribute("aria-controls"));
+    btn.addEventListener("click", () => {
+      const open = btn.getAttribute("aria-expanded") !== "true";
+      btn.setAttribute("aria-expanded", open);
+      btn.textContent = open ? "hide the meetups ▴" : "show the meetups ▾";
+      list.hidden = !open;
+      document.dispatchEvent(new Event("tied:rebuild"));   // the ropes skip hidden cards
+    });
   });
 
   // ── scenes ──────────────────────────────────────────────────
@@ -109,7 +121,7 @@
     if (i !== current) loadScene(i, { sound: soundOn && Sound.state.playing });
   }, { threshold: 0.6 });
   observer.observe($("top"));
-  articles.forEach((a) => observer.observe(a));
+  articles.filter((a) => a.dataset.scene).forEach((a) => observer.observe(a));
 
   // ── motion ──────────────────────────────────────────────────
   // Controls sway and drift unless the visitor's system asks for reduced motion.

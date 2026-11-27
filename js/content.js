@@ -45,6 +45,8 @@ window.SITE = {
         performer: "perform live code (music, visuals, web choreography)",
         presenter: "present first steps and tips for your language",
       },
+      // Which meetups people can sign up for (by number). Remove past ones as they happen.
+      meetups: ["04", "05", "06", "07", "08"],
       thanks: "Thanks, you're in the loop! If you signed up to perform or present, we'll email you to confirm the details.",
 
       // Connects the form to your Google Form. See "Registration form" in README.md.
@@ -313,7 +315,7 @@ stack(
       level: "all levels",
       // Text between **double stars** is shown in bold.
       description: [
-        "In this fourth meetup, we'll keep exploring **textmode.js**: live visuals made of text characters — ASCII art — coded right in the browser (no installation required!).",
+        "In this fourth meetup, we'll start with the basics of **textmode.js**: live visuals made of text characters — ASCII art — coded right in the browser (no installation required!).",
         "Bring your laptop — textmode.js also runs on tablets and even phones :] None of the activities are mandatory, and you're more than welcome to just come and hang out with us!",
       ],
       // Optional: an approximate schedule, as [time, what].
@@ -395,6 +397,42 @@ stack(
   .scale(() => 1.4 - pointer.y * 0.8)          // mouse up/down: zoom
   .out()`,
       },
+    },
+    {
+      number: "05",
+      term: "2027",   // shown in the "meetups 2027" box
+      title: "[MEETUP 05 — coming soon]",
+      date: "Friday, January 29 · 15:00–18:00",
+      place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
+      level: "all levels",
+      description: [],
+    },
+    {
+      number: "06",
+      term: "2027",   // shown in the "meetups 2027" box
+      title: "[MEETUP 06 — coming soon]",
+      date: "Friday, February 26 · 15:00–18:00",
+      place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
+      level: "all levels",
+      description: [],
+    },
+    {
+      number: "07",
+      term: "2027",   // shown in the "meetups 2027" box
+      title: "[MEETUP 07 — coming soon]",
+      date: "Friday, March 26 · 15:00–18:00",
+      place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
+      level: "all levels",
+      description: [],
+    },
+    {
+      number: "08",
+      term: "2027",   // shown in the "meetups 2027" box
+      title: "[MEETUP 08 — coming soon]",
+      date: "Friday, April 23 · 15:00–18:00",
+      place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
+      level: "all levels",
+      description: [],
     },
   ],
 };

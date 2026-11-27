@@ -18,13 +18,14 @@
   function build() {
     const about = root.querySelector("#about");
     const signup = root.querySelector("#signup");
-    const head = root.querySelector("#workshops-head");
-    const cards = [...root.querySelectorAll(".workshop")];
+    // The meetups column: the 2026 box, its cards, the 2027 box, its cards (hidden ones skipped).
+    const right = [...root.querySelectorAll("#workshops .block, #workshops .workshop")].filter((e) => e.offsetParent !== null);
+    const head = right[0];
     columns = getComputedStyle(root).gridTemplateColumns.split(" ").length;
     const chain = (list) => list.slice(1).map((b, i) => [list[i], b]);
     edges = columns > 1
-      ? [[about, signup], [about, head], ...chain([head, ...cards])]
-      : chain([about, signup, head, ...cards]);
+      ? [[about, signup], [about, head], ...chain(right)]
+      : chain([about, signup, ...right]);
     svg.replaceChildren(...edges.map(() => {
       const p = document.createElementNS(NS, "path");
       p.setAttribute("class", "tie");
@@ -79,6 +80,8 @@
     if (visible && !raf) raf = requestAnimationFrame(frame);
   }).observe(root);
   addEventListener("resize", () => draw(performance.now() / 1000));
+
+  document.addEventListener("tied:rebuild", () => { build(); draw(performance.now() / 1000); });
 
   Sound.on("hit", (gain) => {
     kick = Math.max(kick, gain);
