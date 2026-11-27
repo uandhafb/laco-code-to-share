@@ -118,7 +118,7 @@ loop(1, 0.83, 1, 0.23).add(loop(-1, 1, 0.31, 0.85))
       presenter: {
         label: "Your presenter and performer",
         name: "Uandha Fernandes Barbosa",
-        bio: "Originally from Brazil, Uandha is a researcher and new media artist doing her MA in the INDI program at Concordia University. Her work asks: what happens when an algorithm becomes something we can feel? She approaches this question through live coding, embodied human-computer interaction and machine learning, exploring how we perceive and embody code-driven experiences.",
+        bio: "Originally from Brazil, Uandha is a researcher and new media artist doing her MA in the INDI program at Concordia University. Her work asks: what happens when an algorithm becomes something we can feel? She approaches this question through creative coding, embodied human-computer interaction and machine learning, exploring how we perceive and embody code-driven experiences.",
       },
       scene: {
         strudel: `stack(
@@ -178,7 +178,7 @@ loop(1, 0.83, 1, 0.23).add(loop(-1, 1, 0.31, 0.85))
       presenter: {
         label: "Your presenter and performer",
         name: "Uandha Fernandes Barbosa",
-        bio: "Originally from Brazil, Uandha is a researcher and new media artist doing her MA in the INDI program at Concordia University. Her work asks: what happens when an algorithm becomes something we can feel? She approaches this question through live coding, embodied human-computer interaction and machine learning, exploring how we perceive and embody code-driven experiences.",
+        bio: "Originally from Brazil, Uandha is a researcher and new media artist doing her MA in the INDI program at Concordia University. Her work asks: what happens when an algorithm becomes something we can feel? She approaches this question through creative coding, embodied human-computer interaction and machine learning, exploring how we perceive and embody code-driven experiences.",
       },
       scene: {
         strudel: `setcpm(120/4)
@@ -255,7 +255,7 @@ stack(
         {
           label: "Presenter",
           name: "Uandha Fernandes Barbosa",
-          bio: "Originally from Brazil, Uandha is a researcher and new media artist doing her MA in the INDI program at Concordia University. Her work asks: what happens when an algorithm becomes something we can feel? She approaches this question through live coding, embodied human-computer interaction and machine learning, exploring how we perceive and embody code-driven experiences.",
+          bio: "Originally from Brazil, Uandha is a researcher and new media artist doing her MA in the INDI program at Concordia University. Her work asks: what happens when an algorithm becomes something we can feel? She approaches this question through creative coding, embodied human-computer interaction and machine learning, exploring how we perceive and embody code-driven experiences.",
           links: [["textmode.js", "https://code.textmode.art"]],
         },
         {
@@ -333,7 +333,7 @@ stack(
       presenter: {
         label: "Presenter and performer",
         name: "Uandha Fernandes Barbosa",
-        bio: "Originally from Brazil, Uandha is a researcher and new media artist doing her MA in the INDI program at Concordia University. Her work asks: what happens when an algorithm becomes something we can feel? She approaches this question through live coding, embodied human-computer interaction and machine learning, exploring how we perceive and embody code-driven experiences.",
+        bio: "Originally from Brazil, Uandha is a researcher and new media artist doing her MA in the INDI program at Concordia University. Her work asks: what happens when an algorithm becomes something we can feel? She approaches this question through creative coding, embodied human-computer interaction and machine learning, exploring how we perceive and embody code-driven experiences.",
         links: [["textmode.js", "https://code.textmode.art"]],
       },
       scene: {
