@@ -39,7 +39,6 @@ window.SITE = {
     ],
     signup: {
       intro: "Join as an attendee, a performer or a presenter — or all three.",
-      review: "Registrations are reviewed as they come in, until spots are filled. Performers and presenters will be contacted by email to confirm the details.",
       roles: {
         performer: "perform live code (music, visuals, web choreography)",
         presenter: "present first steps and tips for your language",

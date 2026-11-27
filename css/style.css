@@ -167,7 +167,6 @@ main { position: relative; transition: opacity 0.4s; }
 
 /* ── registration form ─────────────────────────────────────── */
 #contact { overflow-wrap: anywhere; }   /* long email: may wrap on phones */
-.signup__review { border-left: 3px solid var(--accent); background: rgba(212, 255, 58, 0.08); padding: 0.6em 0.9em; }
 .form { position: relative; display: grid; gap: 1.3rem; margin: 1.8rem 0 1.6rem; }
 .field { display: grid; gap: 0.45rem; min-width: 0; margin: 0; padding: 0; border: 0; }
 .field[hidden] { display: none; }

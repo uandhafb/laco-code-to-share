@@ -29,7 +29,6 @@
     ...series.about.map((p) => el("p", {}, rich(p))));
   $("bring").append(...series.bring.map((b) => el("li", { textContent: b })));
   $("signup-intro").textContent = series.signup.intro;
-  $("signup-review").textContent = series.signup.review;
   document.querySelectorAll("[data-role-hint]").forEach((el) => {
     el.textContent = "— " + series.signup.roles[el.dataset.roleHint];
   });
