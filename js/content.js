@@ -306,25 +306,23 @@ stack(
     },
     {
       number: "04",
-      title: "LAÇO #4: More ASCII Art",
+      title: "LAÇO #4: ASCII Art and Live Performance",
       date: "Wednesday, December 9 · 13:30–16:00",
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
       facilitator: "",   // shown in "presenter" below instead
       level: "all levels",
       // Text between **double stars** is shown in bold.
       description: [
-        "In this fourth meetup, we'll keep exploring **textmode.js**: live visuals made of text characters — ASCII art — coded right in the browser (no installation required!). Missed meetup #3? No problem — we'll start with a quick recap of the basics, then go further together.",
-        "Bring your laptop and headphones or earbuds — textmode.js also runs on tablets and even phones :] None of the activities are mandatory, and you're more than welcome to just come and hang out with us!",
+        "In this fourth meetup, we'll keep exploring **textmode.js**: live visuals made of text characters — ASCII art — coded right in the browser (no installation required!).",
+        "Bring your laptop — textmode.js also runs on tablets and even phones :] None of the activities are mandatory, and you're more than welcome to just come and hang out with us!",
       ],
       // Optional: an approximate schedule, as [time, what].
       schedule: [
         ["13:30", "Welcome"],
-        ["13:40", "textmode.js recap and basics, hands-on"],
-        ["14:20", "Break"],
-        ["14:30", "More ASCII art with textmode.js, hands-on"],
-        ["15:00", "Code share: try something and show it to the group"],
-        ["15:20", "Live coding performance"],
-        ["15:40", "Wrap-up"],
+        ["13:40", "textmode.js basics, hands-on"],
+        ["14:30", "Break"],
+        ["14:40", "Code share: try something and show it to the group"],
+        ["15:00", "Live coding performance"],
         ["16:00", "End"],
       ],
       // Optional: who presents and performs (one, or a list). Links are [label, url].
