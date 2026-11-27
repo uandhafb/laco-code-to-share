@@ -35,7 +35,7 @@ window.SITE = {
     ],
     bring: [
       "a laptop",
-      "curiosity — no coding or music experience needed",
+      "curiosity — no coding or artistic experience needed",
     ],
     signup: {
       intro: "Join as an attendee, a performer or a presenter — or all three.",
