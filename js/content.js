@@ -310,7 +310,7 @@ stack(
     {
       number: "04",
       day: "2026-12-09",   // the real date: decides "past" / "next" on the page and in the form
-      title: "LAÇO #4: ASCII Art and Live Performance",
+      title: "LAÇO #4: ASCII Art and Coding Performance",
       date: "Wednesday, December 9 · 13:30–16:00",
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
       facilitator: "",   // shown in "presenter" below instead
