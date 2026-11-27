@@ -127,8 +127,6 @@
       el("h2", {}, el("a", { href: `#meetup-${next.number}`, textContent: titleFor(next) })),
       el("time", { dateTime: next.day, textContent: meetupDate(next) }),
       el("span", { className: "hero__venue", textContent: next.place })));
-    $("hero-signup").textContent = `sign up for #${Number(next.number)} →`;
-    $("hero-signup").dataset.workshop = next.number;
     if (following) {
       const program = following.title.startsWith("[") ? " · Program to be announced" : "";
       heroSchedule.append(el("div", { className: "hero__following" },
