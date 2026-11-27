@@ -78,7 +78,7 @@
     return article;
   });
 
-  // Past meetups are folded away; a button above each list shows them again.
+  // Past meetups are folded away; a button at the bottom of each year's box shows them again.
   document.querySelectorAll(".workshops").forEach((list) => {
     const past = [...list.children].filter((li) => li.hidden);
     if (!past.length) return;
@@ -94,7 +94,7 @@
       past.forEach((li) => (li.hidden = !open));
       document.dispatchEvent(new Event("tied:rebuild"));   // the ropes skip hidden cards
     });
-    list.prepend(el("li", { className: "past-toggle-row" }, btn));
+    list.previousElementSibling.append(btn);
   });
 
   // "next meetup →" on the opening screen

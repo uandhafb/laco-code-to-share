@@ -315,9 +315,8 @@ main { position: relative; transition: opacity 0.4s; }
 .workshop__presenter + .workshop__presenter { margin-top: 0.8rem; }
 .workshop__links { list-style: none; margin: 0.6rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; font-size: 0.8rem; }
 .workshop__links a::after { content: " ↗"; }
-.past-toggle-row { list-style: none; }
 .past-toggle {
-  font: inherit; font-size: 0.8rem; color: var(--muted); background: rgba(0, 0, 0, 0.6);
+  display: block; font: inherit; font-size: 0.8rem; color: var(--muted); background: none;
   border: 1px dashed var(--line); padding: 0.4em 0.9em; cursor: pointer;
 }
 .past-toggle:hover { color: var(--accent); border-color: var(--accent); }
