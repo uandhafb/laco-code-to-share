@@ -128,7 +128,7 @@
       el("time", { dateTime: next.day, textContent: meetupDate(next) }),
       el("span", { className: "hero__venue", textContent: next.place })));
     if (following) {
-      const program = following.title.startsWith("[") ? " · Program to be announced" : "";
+      const program = following.title.startsWith("[") ? " · Program to be announced soon" : "";
       heroSchedule.append(el("div", { className: "hero__following" },
         el("span", { className: "hero__next-label", textContent: "Coming up" }),
         el("a", { href: `#meetup-${following.number}`, textContent: titleFor(following) }), program,
