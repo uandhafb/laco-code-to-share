@@ -565,7 +565,7 @@ body.still .hero__name { animation: none; }
 .credit-list { display: grid; gap: 0.35rem; }
 .credit {
   display: grid;
-  grid-template-columns: 6.25rem minmax(0, 1fr);
+  grid-template-columns: 7.5rem minmax(0, 1fr);
   align-items: center;
   gap: 0.9rem;
   min-height: 3rem;
@@ -575,7 +575,7 @@ body.still .hero__name { animation: none; }
   text-decoration: none;
   color: var(--ink);
 }
-.credit img { display: block; width: 4rem; height: auto; }
+.credit img { display: block; width: 5rem; height: auto; }
 .credit strong { color: var(--accent); text-decoration: underline; }
 .credit:hover strong, .credit:focus-visible strong { color: var(--ink); }
 .credit--concordia img {
