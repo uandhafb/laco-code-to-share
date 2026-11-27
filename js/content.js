@@ -40,7 +40,7 @@ window.SITE = {
     signup: {
       intro: "Join as an attendee, a performer or a presenter — or all three.",
       roles: {
-        performer: "perform creative code (music, visuals, web choreography)",
+        performer: "perform with creative coding (music, visuals, web choreography or something else)",
         presenter: "present first steps and tips for your language",
       },
       thanks: "Thanks, you're in the loop! If you signed up to perform or present, we'll email you to confirm the details.",
