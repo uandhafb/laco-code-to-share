@@ -35,7 +35,6 @@ window.SITE = {
     ],
     bring: [
       "a laptop",
-      "headphones",
       "curiosity — no coding or music experience needed",
     ],
     signup: {
