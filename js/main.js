@@ -153,7 +153,6 @@
       Sound.unlock();
       Editor.run("strudel");
     }
-    articles.forEach((a) => a.classList.toggle("is-active", String(a.dataset.scene) === String(i)));
   }
 
   function startSound() {
@@ -188,6 +187,11 @@
     if (!ticking) { ticking = true; requestAnimationFrame(followScroll); }
   }, { passive: true });
   follow.addEventListener("change", followScroll);
+
+  // The yellow highlight follows the meetup card in the middle of the screen.
+  const highlight = new IntersectionObserver((entries) => entries.forEach((e) =>
+    e.target.classList.toggle("is-active", e.isIntersecting)), { rootMargin: "-50% 0px -50% 0px" });
+  articles.forEach((a) => highlight.observe(a));
 
   // ── motion ──────────────────────────────────────────────────
   // Controls sway and drift unless the visitor's system asks for reduced motion.
