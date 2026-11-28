@@ -42,6 +42,10 @@
     new Intl.DateTimeFormat("sv-SE", { timeZone: "America/Toronto" }).format(new Date());
   S.workshops.sort((a, b) => (a.day || "9999").localeCompare(b.day || "9999"));
   S.workshops.forEach((w) => (w.past = !!w.day && w.day < today));
+  // Meetups without their own scene yet borrow one from the meetups that have one,
+  // so scrolling through the upcoming meetups still changes the sound and visuals.
+  const scenes = S.workshops.filter((w) => w.scene).map((w) => w.scene);
+  S.workshops.filter((w) => !w.scene).forEach((w, k) => scenes.length && (w.scene = scenes[k % scenes.length]));
   const [next, following] = S.workshops.filter((w) => w.day && !w.past);
   const titleFor = (w) => w.title.startsWith("[") ? `LAÇO #${Number(w.number)}` : w.title;
   const meetupDate = (w) => {
@@ -175,11 +179,11 @@
   const follow = $("follow");
   const observer = new IntersectionObserver((entries) => {
     if (!follow.checked) return;
-    const seen = entries.filter((e) => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    const seen = entries.filter((e) => e.isIntersecting)[0];
     if (!seen) return;
     const i = seen.target.id === "top" ? "intro" : Number(seen.target.dataset.scene);
     if (i !== current) loadScene(i, { sound: soundOn && Sound.state.playing });
-  }, { threshold: 0.6 });
+  }, { rootMargin: "-50% 0px -50% 0px" });   // the card crossing the middle of the screen
   observer.observe($("top"));
   articles.filter((a) => a.dataset.scene).forEach((a) => observer.observe(a));
 
