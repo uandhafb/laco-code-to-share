@@ -406,29 +406,6 @@ stack(
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
       level: "all levels",
       description: ["We're preparing the program for this meetup. It will be announced soon!"],
-      scene: {
-        strudel: `stack(
-  drums(
-    s("bd ~ ~ bd, [~ hh]*2, ~ ~ cp ~")
-      .gain(.45)
-      .room(.4)
-  ),
-
-  melody(
-    n("<0 2 4 [6 4]>*2").scale("A:minor:pentatonic")
-      .s("sawtooth")
-      .lpf(sine.slow(8).range(300, 1500))
-      .delay(.25)
-      .room(.8)
-      .gain(.3)
-  )
-)`,
-        hydra: `voronoi(8, 0.3, 0.2)
-  .color(0.6, 0.8, 1)
-  .modulate(osc(6, 0.05), () => 0.1 + pulse * 0.3)
-  .rotate(() => (pointer.x - 0.5) * 2)          // mouse left/right: turn
-  .out()`,
-      },
     },
     {
       number: "06",
@@ -438,28 +415,6 @@ stack(
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
       level: "all levels",
       description: ["We're preparing the program for this meetup. It will be announced soon!"],
-      scene: {
-        strudel: `stack(
-  drums(
-    s("808bd*2, [~ cp]*2, hh*8?")
-      .gain(.5)
-  ),
-
-  melody(
-    n("0 3 5 7 <10 12>").scale("E:major")
-      .s("square")
-      .lpf(1200)
-      .delay(.3)
-      .gain(.22)
-  )
-)`,
-        hydra: `osc(20, 0.1, () => pulse * 3)
-  .kaleid(6)
-  .color(1, 0.4, 0.8)
-  .modulateScale(noise(2), 0.3)
-  .scale(() => 1 + pointer.y * 0.5)            // mouse up/down: zoom
-  .out()`,
-      },
     },
     {
       number: "07",
@@ -469,29 +424,6 @@ stack(
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
       level: "all levels",
       description: ["We're preparing the program for this meetup. It will be announced soon!"],
-      scene: {
-        strudel: `stack(
-  drums(
-    s("bd [~ bd] sd ~, hh*4")
-      .jux(rev)
-      .gain(.45)
-  ),
-
-  melody(
-    note("<[c4,e4,g4] [a3,c4,e4] [f3,a3,c4] [g3,b3,d4]>")
-      .s("triangle")
-      .room(.6)
-      .gain(.3)
-  )
-)`,
-        hydra: `shape(4, () => 0.3 + pulse * 0.2, 0.01)
-  .repeat(4, 4)
-  .rotate(() => time * 0.1)
-  .color(0.4, 1, 0.6)
-  .modulate(noise(3), 0.1)
-  .scrollX(() => pointer.x)                     // mouse left/right: slide
-  .out()`,
-      },
     },
     {
       number: "08",
@@ -501,28 +433,6 @@ stack(
       place: "Visualization Studio (LB-314, 3rd floor), Webster Library, Concordia",
       level: "all levels",
       description: ["We're preparing the program for this meetup. It will be announced soon!"],
-      scene: {
-        strudel: `stack(
-  drums(
-    s("bd*4, ~ cp ~ cp, hh*8")
-      .gain(.45)
-  ),
-
-  melody(
-    n("0 [2 4] <5 7> 9").scale("C:dorian")
-      .s("sawtooth")
-      .lpf(sine.slow(4).range(400, 3000))
-      .jux(rev)
-      .gain(.25)
-  )
-)`,
-        hydra: `gradient(1)
-  .hue(() => time * 0.05)
-  .modulate(voronoi(5, 0.5), () => pulse * 0.4)
-  .kaleid(4)
-  .rotate(() => (pointer.x - 0.5) * 3)          // mouse left/right: turn
-  .out()`,
-      },
     },
   ],
 };

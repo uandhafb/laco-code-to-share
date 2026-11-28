@@ -42,10 +42,6 @@
     new Intl.DateTimeFormat("sv-SE", { timeZone: "America/Toronto" }).format(new Date());
   S.workshops.sort((a, b) => (a.day || "9999").localeCompare(b.day || "9999"));
   S.workshops.forEach((w) => (w.past = !!w.day && w.day < today));
-  // Meetups without their own scene yet borrow one from the meetups that have one,
-  // so scrolling through the upcoming meetups still changes the sound and visuals.
-  const scenes = S.workshops.filter((w) => w.scene).map((w) => w.scene);
-  S.workshops.filter((w) => !w.scene).forEach((w, k) => scenes.length && (w.scene = scenes[k % scenes.length]));
   const [next, following] = S.workshops.filter((w) => w.day && !w.past);
   const titleFor = (w) => w.title.startsWith("[") ? `LAÇO #${Number(w.number)}` : w.title;
   const meetupDate = (w) => {
