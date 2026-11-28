@@ -171,17 +171,23 @@
     $("start").textContent = s.playing ? "■ stop sound" : "▶ start sound";
   });
 
-  // Optional: switch scenes as each workshop scrolls into view.
+  // Optional: the scenes (intro, then each meetup's in date order) are spread evenly
+  // over the page — each one plays for an equal part of the scroll, top to bottom.
   const follow = $("follow");
-  const observer = new IntersectionObserver((entries) => {
+  const order = ["intro", ...S.workshops.map((w, i) => (w.scene ? i : null)).filter((i) => i !== null)];
+  let ticking = false;
+  function followScroll() {
+    ticking = false;
     if (!follow.checked) return;
-    const seen = entries.filter((e) => e.isIntersecting)[0];
-    if (!seen) return;
-    const i = seen.target.id === "top" ? "intro" : Number(seen.target.dataset.scene);
+    const room = document.documentElement.scrollHeight - innerHeight;
+    const part = room > 0 ? Math.min(order.length - 1, Math.floor((scrollY / room) * order.length)) : 0;
+    const i = order[part];
     if (i !== current) loadScene(i, { sound: soundOn && Sound.state.playing });
-  }, { rootMargin: "-50% 0px -50% 0px" });   // the card crossing the middle of the screen
-  observer.observe($("top"));
-  articles.filter((a) => a.dataset.scene).forEach((a) => observer.observe(a));
+  }
+  addEventListener("scroll", () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(followScroll); }
+  }, { passive: true });
+  follow.addEventListener("change", followScroll);
 
   // ── motion ──────────────────────────────────────────────────
   // Controls sway and drift unless the visitor's system asks for reduced motion.
